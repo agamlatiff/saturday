@@ -8,7 +8,7 @@ class CategoryRepository
 {
   public function getAll(array $fields)
   {
-    return Category::select($fields)->latest()->get();
+    return Category::select($fields)->latest()->paginate(10);
   }
 
   public function getById(int $id, array $fields)
