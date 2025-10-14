@@ -5,14 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 use App\Http\Resources\CategoryResource;
-use App\Models\Category;
 use App\Services\CategoryService;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    //
     private $categoryService;
 
     // Declare constructor method
@@ -37,7 +34,7 @@ class CategoryController extends Controller
     {
         try {
             // Get data by id
-            $fields = ["id", "name", "phooto", "tagline"];
+            $fields = ["id", "name", "photo", "tagline"];
             $category = $this->categoryService->getById($id, $fields);
 
             // Return one data as JSON response
