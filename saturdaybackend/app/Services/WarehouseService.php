@@ -22,6 +22,11 @@ class WarehouseService
   {
     return $this->warehouseRepository->getAll($fields);
   }
+  
+  // Get by id 
+  public function getById(int $id, array $fields) {
+    return $this->warehouseRepository->getById($id, $fields ?? ["*"]);
+  }
 
 
   // Create data
@@ -56,6 +61,19 @@ class WarehouseService
       $data["photo"] = $this->uploadPhoto($data["photo"]);
     }
     return $this->warehouseRepository->update($id, $data);
+  }
+  
+  public function delete (int $id) {
+    // Get data by id 
+    $fields = ["*"];
+    $warehouse = $this->warehouseRepository->getById($id,$fields);
+    
+    if($warehouse->photo) {
+      $this->deletePhoto($warehouse->photo);
+    }
+    
+    $this->warehouseRepository->delete($id);
+    
   }
 
 
