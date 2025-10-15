@@ -24,8 +24,8 @@ class WarehouseRequest extends FormRequest
         return [
             "name" => "required|string|max:255|unique:warehouses,name," . $this->route("warehouse"),
             "address" => "required|string",
-            "photo" => "required|image|nines:jpeg,png,jpg|nax:2048",
+            "photo" => "required|image|mimes:jpeg,png,jpg|max:2048",
             "phone" => "required|string|max:15",
-         ];
+        ];
     }
 }

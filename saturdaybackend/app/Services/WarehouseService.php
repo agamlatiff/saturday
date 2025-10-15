@@ -76,7 +76,6 @@ class WarehouseService
     
   }
 
-
   // Attach product to warehouse
   public function attachProduct(int $warehouseId, int $productId, int $stock)
   {
