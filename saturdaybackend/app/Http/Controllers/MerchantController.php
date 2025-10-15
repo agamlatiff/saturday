@@ -85,8 +85,4 @@ class MerchantController extends Controller
             ], 404);
         }
     }
-    
-    
-
-
 }
