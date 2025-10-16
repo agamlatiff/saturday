@@ -1,0 +1,55 @@
+<?php
+
+namespace App\Services;
+
+use App\Repositories\ProductRepository;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
+
+class ProductService
+{
+
+  // Declare dependency
+  private ProductRepository $productRepository;
+  public function __construct(ProductRepository $productRepository)
+  {
+    $this->productRepository = $productRepository;
+  }
+
+  public function getAll(array $fields)
+  {
+    return $this->productRepository->getAll($fields);
+  }
+
+  public function getById(int $id, array $fields)
+  {
+    return $this->productRepository->getById($id, $fields)["*"];
+  }
+
+  public function create(array $data)
+  {
+    if (isset($data["thumbnail"]) && isset($data["thumbnail"]) instanceof UploadedFile) {
+      $data["thumbnail"] = $this->uploadPhoto($data["thumbnail"]);
+    }
+
+    return $this->productRepository->create($data);
+  }
+  
+  public function update (int $id, array $data) {
+    $fields = ["*"];
+    $product = $this->productRepository->getById($id, $fields);
+    
+    // 04:08
+  }
+  
+  public function uploadPhoto (UploadedFile $photo) {
+    return $photo->store("products", "public");
+  }
+  
+  public function deletePhoto (string $photoPath) {
+    $relativePath = "products/" . basename($photoPath);
+    if(Storage::disk("public")->exists($relativePath)) {
+      Storage::disk("public")->delete($relativePath);
+    };
+  }
+}
