@@ -24,7 +24,7 @@ class MerchantRepository
   public function update(int $id, array $data)
   {
     $merchant = Merchant::findOrFail($id);
-    $merchant::update($data);
+    $merchant->update($data);
     return $merchant;
   }
 

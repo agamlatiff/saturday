@@ -28,7 +28,7 @@ class MerchantService
 
   public function create(array $data)
   {
-    if (isset($data["photo"]) && isset($data["photo"]) instanceof UploadedFile) {
+    if (isset($data["photo"]) && $data["photo"] instanceof UploadedFile) {
       $data["photo"] = $this->uploadPhoto($data["photo"]);
     }
 
@@ -40,7 +40,7 @@ class MerchantService
     $fields = ["*"];
     $merchant = $this->merchantRepository->getById($id, $fields);
 
-    if (isset($data["photo"]) && isset($data["photo"]) instanceof UploadedFile) {
+    if (isset($data["photo"]) && $data["photo"] instanceof UploadedFile) {
       if (!empty($merchant->photo)) {
         $this->deletePhoto($data["photo"]);
       }
@@ -71,7 +71,7 @@ class MerchantService
 
   private function uploadPhoto(UploadedFile $photo): string
   {
-    return $photo->store("mrechants", "public");
+    return $photo->store("merchants", "public");
   }
 
   private function deletePhoto(string $photoPath): void

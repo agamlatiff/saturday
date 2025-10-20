@@ -28,7 +28,7 @@ class ProductService
 
   public function create(array $data)
   {
-    if (isset($data["thumbnail"]) && isset($data["thumbnail"]) instanceof UploadedFile) {
+    if (isset($data["thumbnail"]) && $data["thumbnail"] instanceof UploadedFile) {
       $data["thumbnail"] = $this->uploadPhoto($data["thumbnail"]);
     }
 
