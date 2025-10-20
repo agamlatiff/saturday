@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\WarehouseProductRequest;
 use App\Http\Requests\WarehouseProductUpdateRequest;
-use App\Warehouse\WarehouseService;
+use App\Services\WarehouseService;
 
 class WarehouseProductController extends Controller
 {
