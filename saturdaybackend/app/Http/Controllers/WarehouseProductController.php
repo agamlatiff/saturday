@@ -20,7 +20,10 @@ class WarehouseProductController extends Controller
     public function attach(WarehouseProductRequest $request, int $warehouseId)
     {
         // validated input, then attach product and stock
-        $this->warehouseService->attachProduct($warehouseId, $request->validated()->input("product_id"), $request->validated()->input("stock"));
+
+        $validatedData = $request->validated();
+
+        $this->warehouseService->attachProduct($warehouseId, $validatedData["product_id"], $validatedData["stock"]);
 
         return response()->json(["message" => "Product attached successfully"]);
     }
@@ -32,11 +35,12 @@ class WarehouseProductController extends Controller
 
         return response()->json(["message" => "product detached successfully"]);
     }
-    
-    public function update (WarehouseProductUpdateRequest $request, int $warehouseId, int $productId) {
-        
-        $warehouseProduct = $this->warehouseService->updateProductStock($warehouseId, $productId, $request->validated())["stock"];
-        
+
+    public function update(WarehouseProductUpdateRequest $request, int $warehouseId, int $productId)
+    {
+
+        $warehouseProduct = $this->warehouseService->updateProductStock($warehouseId, $productId, $request->validated()["stock"]);
+
         return response()->json([
             "message" => "Stock updated successfully",
             "data" => $warehouseProduct
