@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\WarehouseRequest;
 use App\Http\Resources\WarehouseResource;
-use App\Warehouse\WarehouseService;
+use App\Services\WarehouseService;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class WarehouseController extends Controller
