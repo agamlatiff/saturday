@@ -52,6 +52,10 @@ class TransactionController extends Controller
     public function getTransactionsByMerchant()
     {
         $user = auth()->user();
+        
+        if(!$user) {
+            return response()->json(["message" => "No auth available"], 500);
+        }
 
         if (!$user || !$user->merchant) {
             return response()->json(["message" => "No merchant assigned"], 403);

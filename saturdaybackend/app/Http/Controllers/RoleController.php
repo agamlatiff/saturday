@@ -23,7 +23,7 @@ class RoleController extends Controller
         return response()->json(RoleResource::collection($roles));
     }
 
-    public function show(int $id, array $fields)
+    public function show(int $id)
     {
         $fields = ["id", "name"];
         $role = $this->roleService->getById($id, $fields);
@@ -36,7 +36,7 @@ class RoleController extends Controller
     }
     
     public function update (RoleRequest $request, int $id) {
-        $role = $this->roleService->getById($id,$request->validated());
+        $role = $this->roleService->update($id,$request->validated());
         return response()->json(new RoleResource($role));
     }
     

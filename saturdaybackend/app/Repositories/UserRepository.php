@@ -8,7 +8,7 @@ class UserRepository
 {
   public function getAll(array $fields)
   {
-    return User::select($fields)->latest()->pageinate(10);
+    return User::select($fields)->latest()->paginate(10);
   }
 
   public function getById(int $id, array $fields)

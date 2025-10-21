@@ -4,6 +4,10 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MerchantController;
 use App\Http\Controllers\MerchantProductController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserRoleController;
 use App\Http\Controllers\WarehouseController;
 use App\Http\Controllers\WarehouseProductController;
 use Illuminate\Http\Request;
@@ -12,6 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
+
+Route::apiResource("users", UserController::class);
+Route::apiResource("roles", RoleController::class);
+
+Route::post("users/roles", [UserRoleController::class, "assignRole"]);
 
 Route::apiResource("categories", CategoryController::class);
 Route::apiResource("products", ProductController::class);
@@ -26,6 +35,9 @@ Route::delete("warehouses/{warehouse}/products/{product}", [WarehouseProductCont
 Route::post("merchants/{merchant}/products", [MerchantProductController::class, "store"]);
 Route::put("merchants/{merchant}/products/{product}", [MerchantProductController::class, "update"]);
 Route::delete("merchants/{merchant}/products/{product}", [MerchantProductController::class, "destroy"]);
+
+Route::get("my-merchant", [MerchantController::class, "getMyMerchantProfile" ]);
+Route::get("my-merchant/transactions", [TransactionController::class, "getTransactionsByMerchant"]);
 
 
 
