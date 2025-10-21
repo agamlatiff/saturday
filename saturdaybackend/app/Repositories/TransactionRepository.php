@@ -44,7 +44,7 @@ class TransactionRepository
         "transaction_id" => $transactionId,
         "product_id" => $product["product_id"],
         "quantity" => $product["quantity"],
-        "price" => $products["price"],
+        "price" => $product["price"],
         "sub_total" => $subTotal
       ]);
     }

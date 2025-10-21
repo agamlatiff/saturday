@@ -6,8 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MerchantRequest;
 use App\Http\Resources\MerchantResource;
 use App\Services\MerchantService;
-use Illuminate\Container\Attributes\Auth;
+
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Auth;
 
 class MerchantController extends Controller
 {

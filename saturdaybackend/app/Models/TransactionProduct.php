@@ -11,7 +11,7 @@ class TransactionProduct extends Model
 
     use SoftDeletes;
 
-    protected $fillable = ["name", "phone", "product_id", "quantity", "price", "sub_total"];
+    protected $fillable = ["product_id", "quantity", "price", "sub_total", "transaction_id"];
 
     public function transaction()
     {

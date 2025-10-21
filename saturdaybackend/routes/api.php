@@ -14,7 +14,7 @@ use App\Http\Controllers\WarehouseProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-// Route::post("token-login", [AuthController::class, "tokenLogin"]);
+Route::post("token-login", [AuthController::class, "tokenLogin"]);
 Route::post("register", [AuthController::class, "register"]);
 Route::post("login", [AuthController::class, "login"]);
 
