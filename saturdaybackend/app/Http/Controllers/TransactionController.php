@@ -36,6 +36,7 @@ class TransactionController extends Controller
     }
 
     public function show(int $id)
+    
     {
         try {
             $fields = ["*"];

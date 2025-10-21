@@ -23,7 +23,7 @@ class ProductService
 
   public function getById(int $id, array $fields)
   {
-    return $this->productRepository->getById($id, $fields)["*"];
+    return $this->productRepository->getById($id, $fields ?? ["*"]);
   }
 
   public function create(array $data)

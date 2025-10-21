@@ -36,6 +36,6 @@ class MerchantRepository
 
   public function getByKeeperId(int $keeperId, array $fields = ["*"])
   {
-    return Merchant::select($fields)->where("keeper_id", $keeperId)->with(["products.category"])->firstOrFail();
+    return Merchant::select($fields)->where("keeper_id", $keeperId)->with(["products.category", "keeper"])->firstOrFail();
   }
 }

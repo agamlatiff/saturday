@@ -52,6 +52,6 @@ class TransactionRepository
 
   public function getTransactionsByMerchant(int $merchantId)
   {
-    return Transaction::where("merchant_id", $merchantId)->select(["*"])->with(["merchant", "transactionProducts.product"])->latest()->paginate(10);
+    return Transaction::where("merchant_id", $merchantId)->select(["*"])->with(["merchant", "transactionProducts.product.category"])->latest()->paginate(10);
   }
 }

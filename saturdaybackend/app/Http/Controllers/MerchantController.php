@@ -24,13 +24,13 @@ class MerchantController extends Controller
         $fields = ["*"];
         $merchants = $this->merchantService->getAll($fields ?: ["*"]);
 
-        return response()->json([MerchantResource::collection($merchants)]);
+        return response()->json(MerchantResource::collection($merchants));
     }
 
     public function show(int $id)
     {
         try {
-            $fields = ["id", "name", "photo", "keeper_id"];
+            $fields = ["id", "name", "photo", "keeper_id", "phone"];
             $merchant = $this->merchantService->getById($id, $fields);
             return response()->json(new MerchantResource($merchant));
         } catch (ModelNotFoundException $error) {

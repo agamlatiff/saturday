@@ -23,7 +23,7 @@ class WarehouseController extends Controller
     public function index()
     {
         // Get fields from request
-        $fields = ["id", "name", "photo"];
+        $fields = ["id", "name", "photo", "phone"];
         // Get all data from database based on fields
         $warehouses = $this->warehouseService->getAll($fields ?? ["*"]);
         // Return all data as JSON response

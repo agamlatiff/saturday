@@ -33,7 +33,7 @@ Route::middleware(["auth:sanctum", "role:manager"])->group(function () {
     Route::apiResource("products", ProductController::class);
 
     Route::apiResource("warehouses", WarehouseController::class);
-    Route::apiResource("merchants", MerchantController::class);
+    Route::apiResource("/merchants", MerchantController::class);
 
     Route::post("warehouses/{warehouse}/products", [WarehouseProductController::class, "attach"]);
     Route::put("warehouses/{warehouse}/products/{product}", [WarehouseProductController::class, "update"]);
