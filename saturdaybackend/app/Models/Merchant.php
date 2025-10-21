@@ -28,7 +28,7 @@ class Merchant extends Model
         return $this->hasMany(Transaction::class);
     }
 
-    public function getPhotoAttributes($value)
+    public function getPhotoAttribute($value)
     {
         if (!$value) {
             return null; // Image is not available

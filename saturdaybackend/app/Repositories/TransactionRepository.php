@@ -9,12 +9,12 @@ class TransactionRepository
 {
   public function getAll(array $fields)
   {
-    return Transaction::select($fields)->with(["transactionProducts.product", "merchant.keeper"])->latest()->paginate(10);
+    return Transaction::select($fields)->with(["transactionProducts.product.category", "merchant.keeper"])->latest()->paginate(10);
   }
 
   public function getById(int $id, array $fields)
   {
-    return Transaction::select($fields)->with(["transactionProducts.product", "merchant.keeper"])->findOrFail($id);
+    return Transaction::select($fields)->with(["transactionProducts.product.category", "merchant.keeper"])->findOrFail($id);
   }
 
   public function create(array $data)

@@ -42,6 +42,8 @@ Route::middleware(["auth:sanctum", "role:manager"])->group(function () {
     Route::post("merchants/{merchant}/products", [MerchantProductController::class, "store"]);
     Route::put("merchants/{merchant}/products/{product}", [MerchantProductController::class, "update"]);
     Route::delete("merchants/{merchant}/products/{product}", [MerchantProductController::class, "destroy"]);
+    
+    Route::apiResource("transactions", TransactionController::class);
 });
 
 
