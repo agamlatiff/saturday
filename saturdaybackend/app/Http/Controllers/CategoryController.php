@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class CategoryController extends Controller
 {
-    private $categoryService;
+    private CategoryService $categoryService;
 
     // Declare constructor method
     public function __construct(CategoryService $categoryService)
