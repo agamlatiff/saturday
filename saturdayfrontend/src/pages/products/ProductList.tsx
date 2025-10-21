@@ -1,16 +1,15 @@
 import { Link } from "react-router-dom";
 import Sidebar from "../../components/Sidebar";
 import { useFetchProduct, useFetchProducts } from "../../hooks/useProducts";
-import React, { useState } from "react"; 
+import React, { useState } from "react";
 import UserProfileCard from "../../components/UserProfileCard";
 
-const ProductList = () => { 
+const ProductList = () => {
   const { data: products, isPending, isError, error } = useFetchProducts();
   const [selectedProductId, setSelectedProductId] = useState<number | null>(
     null
   );
   const { data: selectedProduct } = useFetchProduct(selectedProductId || 0);
-  
   if (isPending) return <p>Loading products...</p>;
   if (isError)
     return (
@@ -214,22 +213,26 @@ const ProductList = () => {
                 <div className="flex flex-col gap-2">
                   <p className="flex items-center gap-[6px] font-semibold text-lg">
                     <img
-                      src={selectedProduct.category.photo}
+                      src={selectedProduct?.category?.photo}
                       className="size-6 flex shrink-0"
                       alt="icon"
                     />
-                    {selectedProduct.name}
+                    {selectedProduct?.name}
                   </p>
                   <p className="font-bold text-lg">
-                    {selectedProduct.category.name}
+                    {selectedProduct?.category?.name}
                   </p>
                   <p className="font-semibold text-[17px] text-monday-blue">
-                    Rp {selectedProduct.price.toLocaleString("id")}
+                    Rp{" "}
+                    {selectedProduct &&
+                    typeof selectedProduct.price === "number"
+                      ? `Rp ${selectedProduct.price.toLocaleString("id")}`
+                      : "Harga tidak tersedia"}
                   </p>
                 </div>
                 <div className="flex size-[100px] rounded-2xl bg-monday-gray-background items-center justify-center overflow-hidden">
                   <img
-                    src={selectedProduct.thumbnail}
+                    src={selectedProduct?.thumbnail}
                     className="size-full object-contain"
                     alt="icon"
                   />
@@ -241,7 +244,7 @@ const ProductList = () => {
                   Product About
                 </p>
                 <p className="font-semibold leading-[160%]">
-                  {selectedProduct.about}
+                  {selectedProduct?.about}
                 </p>
               </div>
             </div>

@@ -14,8 +14,8 @@ const MerchantProductList = () => {
   );
   const { data: selectedProduct } = useFetchProduct(selectedProductId || 0);
 
-  if (!merchant) return <p> merchant not found...</p>;
   if (isPending) return <p>Loading merchant products...</p>;
+  if (!merchant) return <p> merchant not found...</p>;
 
   return (
     <>
@@ -29,7 +29,8 @@ const MerchantProductList = () => {
             <div className="flex items-center gap-6 h-[92px] bg-white w-full rounded-3xl p-[18px]">
               <div className="flex flex-col gap-[6px] w-full">
                 <h1 className="font-bold text-2xl">Merchant Details</h1>
-                <Link to={`/merchants`}
+                <Link
+                  to={`/merchants`}
                   className="flex items-center gap-[6px] text-monday-gray font-semibold"
                 >
                   <img
@@ -212,7 +213,7 @@ const MerchantProductList = () => {
                               Details
                             </button>
                             <Link
-                      to={`/merchant-products/${id}/edit-assign/${product.id}`}
+                              to={`/merchant-products/${id}/edit-assign/${product.id}`}
                               className="btn btn-black min-w-[130px] font-semibold"
                             >
                               Add Stock

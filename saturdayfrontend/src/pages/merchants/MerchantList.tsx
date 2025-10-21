@@ -122,7 +122,7 @@ const MerchantList = () => {
                                 className="size-6 flex shrink-0"
                                 alt="icon"
                               />
-                              <span>{merchant.keeper.name}</span>
+                              <span>{merchant.keeper ?  merchant.keeper.name : "No Keeper"}</span>
                             </p>
                           </div>
                         </div>
@@ -133,7 +133,7 @@ const MerchantList = () => {
                             alt="icon"
                           />
                           <p className="font-semibold text-lg text-nowrap">
-                            {merchant.products.length} Products
+                            {merchant.products ? merchant.products.length : 0} Products
                           </p>
                         </div>
                         <div className="flex items-center gap-4">
@@ -142,7 +142,7 @@ const MerchantList = () => {
                           >
                             Details
                           </Link>
-                          <Link to={`/merchants/edit/${merchant.id}`}
+                          <Link to={`/merchants/edit/${merchant.id }`}
                             className="btn btn-black min-w-[130px] font-semibold"
                           >
                             <img
