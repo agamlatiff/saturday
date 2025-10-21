@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MerchantController;
 use App\Http\Controllers\MerchantProductController;
@@ -12,6 +13,11 @@ use App\Http\Controllers\WarehouseController;
 use App\Http\Controllers\WarehouseProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
+Route::post("token-login", [AuthController::class, "tokenLogin"]);
+Route::post("register", [AuthController::class, "register"]);
+Route::post("login", [AuthController::class, "login"]);
+
 
 Route::get('/user', function (Request $request) {
     return $request->user();
