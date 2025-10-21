@@ -39,5 +39,11 @@ Route::delete("merchants/{merchant}/products/{product}", [MerchantProductControl
 Route::get("my-merchant", [MerchantController::class, "getMyMerchantProfile" ]);
 Route::get("my-merchant/transactions", [TransactionController::class, "getTransactionsByMerchant"]);
 
+Route::post("transactions", [TransactionController::class, "store"]);
+Route::get("transactions/{transaction}", [TransactionController::class, "show"]);
+
+Route::get("my-merchant", [MerchantController::class, "getMyMerchantProfile"]);
+route::get("my-merchant/transactions", [TransactionController::class, "getTransactionsByMerchant"]);
+
 
 
