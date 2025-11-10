@@ -18,6 +18,7 @@ class RoleRepository
   {
     return Role::select($fields)->latest()->paginate(10);
   }
+  
 
   public function getById(int $id, array $fields)
   {
