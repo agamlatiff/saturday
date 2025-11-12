@@ -8,6 +8,7 @@ import { UserFormData, userSchema } from "../../schemas/userSchema";
 import { AxiosError } from "axios";
 import { ApiErrorResponse } from "../../types/types";
 import UserProfileCard from "../../components/UserProfileCard";
+import SearchButton from "../../components/SearchButton";
 
 const EditUser = () => {
   const { id } = useParams<{ id: string }>();
@@ -85,15 +86,7 @@ const EditUser = () => {
               </Link>
             </div>
             <div className="flex items-center flex-nowrap gap-3">
-              <a href="#">
-                <div className="flex size-14 rounded-full bg-monday-gray-background items-center justify-center overflow-hidden">
-                  <img
-                    src="/assets/images/icons/search-normal-black.svg"
-                    className="size-6"
-                    alt="icon"
-                  />
-                </div>
-              </a>
+              <SearchButton />
               <a href="#">
                 <div className="flex size-14 rounded-full bg-monday-gray-background items-center justify-center overflow-hidden">
                   <img

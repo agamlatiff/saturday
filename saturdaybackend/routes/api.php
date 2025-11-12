@@ -42,7 +42,7 @@ Route::middleware(["auth:sanctum", "role:manager"])->group(function () {
     Route::post("merchants/{merchant}/products", [MerchantProductController::class, "store"]);
     Route::put("merchants/{merchant}/products/{product}", [MerchantProductController::class, "update"]);
     Route::delete("merchants/{merchant}/products/{product}", [MerchantProductController::class, "destroy"]);
-    
+
     Route::apiResource("transactions", TransactionController::class);
 });
 
@@ -51,10 +51,10 @@ Route::middleware(["auth:sanctum", "role:manager|keeper"])->group(function () {
 
     Route::get("categories", [CategoryController::class, "index"]);
     Route::get("categories/{category}", [CategoryController::class, "show"]);
-    
+
     Route::get("products", [ProductController::class, "index"]);
     Route::get("products/{product}", [ProductController::class, "show"]);
-    
+
     Route::get("warehouses", [WarehouseController::class, "index"]);
     Route::get("warehouses/{warehouse}", [WarehouseController::class, "show"]);
 

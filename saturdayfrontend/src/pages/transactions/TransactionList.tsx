@@ -6,6 +6,7 @@ import UserProfileCard from "../../components/UserProfileCard";
 import { useMyMerchantProfile } from "../../hooks/useMerchants";
 import React, { useState } from "react";
 import { useFetchProduct } from "../../hooks/useProducts";
+import SearchButton from "../../components/SearchButton";
 
 const TransactionList = () => {
   const { user } = useAuth();
@@ -45,15 +46,7 @@ const TransactionList = () => {
                 <h1 className="font-bold text-2xl">Manage Transactions</h1>
               </div>
               <div className="flex items-center flex-nowrap gap-3">
-                <a href="#">
-                  <div className="flex size-14 rounded-full bg-monday-gray-background items-center justify-center overflow-hidden">
-                    <img
-                      src="assets/images/icons/search-normal-black.svg"
-                      className="size-6"
-                      alt="icon"
-                    />
-                  </div>
-                </a>
+                <SearchButton />
                 <a href="#">
                   <div className="flex size-14 rounded-full bg-monday-gray-background items-center justify-center overflow-hidden">
                     <img

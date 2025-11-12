@@ -3,9 +3,9 @@ import Sidebar from "../../components/Sidebar";
 import { useFetchRoles } from "../../hooks/useRoles";
 import UserProfileCard from "../../components/UserProfileCard";
 import React from "react";
+import SearchButton from "../../components/SearchButton";
 
 const RoleList = () => {
-
   const { data: roles = [], isPending } = useFetchRoles();
 
   if (isPending) return <p>Loading roles...</p>;
@@ -23,36 +23,7 @@ const RoleList = () => {
               <h1 className="font-bold text-2xl">Manage Roles</h1>
             </div>
             <div className="flex items-center flex-nowrap gap-3">
-              <a href="#">
-                <div className="flex size-14 rounded-full bg-monday-gray-background items-center justify-center overflow-hidden">
-                  <img
-                    src="assets/images/icons/search-normal-black.svg"
-                    className="size-6"
-                    alt="icon"
-                  />
-                </div>
-              </a>
-              <a href="#">
-                <div className="flex size-14 rounded-full bg-monday-gray-background items-center justify-center overflow-hidden">
-                  <img
-                    src="assets/images/icons/notification-black.svg"
-                    className="size-6"
-                    alt="icon"
-                  />
-                </div>
-              </a>
-              <div className="relative w-fit">
-                <div className="flex size-14 rounded-full bg-monday-lime-green items-center justify-center overflow-hidden">
-                  <img
-                    src="assets/images/icons/crown-black-fill.svg"
-                    className="size-6"
-                    alt="icon"
-                  />
-                </div>
-                <p className="absolute transform -translate-x-1/2 left-1/2 -bottom-2 rounded-[20px] py-1 px-2 bg-monday-black text-white w-fit font-extrabold text-[8px]">
-                  PRO
-                </p>
-              </div>
+              <SearchButton />
             </div>
           </div>
           <UserProfileCard />
@@ -81,9 +52,7 @@ const RoleList = () => {
                   View and update your Roles here.
                 </p>
               </div>
-               <Link to="/roles/add"
-                className="btn btn-primary font-semibold"
-              >
+              <Link to="/roles/add" className="btn btn-primary font-semibold">
                 Add New
                 <img
                   src="assets/images/icons/add-square-white.svg"
@@ -124,7 +93,8 @@ const RoleList = () => {
                             {role.users_web_count} Total User
                           </p>
                         </div>
-                        <Link to={`/roles/edit/${role.id}`}
+                        <Link
+                          to={`/roles/edit/${role.id}`}
                           className="btn btn-black min-w-[130px] font-semibold"
                         >
                           <img

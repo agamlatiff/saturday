@@ -4,6 +4,7 @@ import { useFetchUsers, useDeleteUser } from "../../hooks/useUsers";
 import { User } from "../../types/types";
 import UserProfileCard from "../../components/UserProfileCard";
 import React from "react";
+import SearchButton from "../../components/SearchButton";
 
 const UserList = () => {
   const { data: users, isPending } = useFetchUsers();
@@ -31,36 +32,7 @@ const UserList = () => {
               <h1 className="font-bold text-2xl">Manage Users</h1>
             </div>
             <div className="flex items-center flex-nowrap gap-3">
-              <a href="#">
-                <div className="flex size-14 rounded-full bg-monday-gray-background items-center justify-center overflow-hidden">
-                  <img
-                    src="assets/images/icons/search-normal-black.svg"
-                    className="size-6"
-                    alt="icon"
-                  />
-                </div>
-              </a>
-              <a href="#">
-                <div className="flex size-14 rounded-full bg-monday-gray-background items-center justify-center overflow-hidden">
-                  <img
-                    src="assets/images/icons/notification-black.svg"
-                    className="size-6"
-                    alt="icon"
-                  />
-                </div>
-              </a>
-              <div className="relative w-fit">
-                <div className="flex size-14 rounded-full bg-monday-lime-green items-center justify-center overflow-hidden">
-                  <img
-                    src="assets/images/icons/crown-black-fill.svg"
-                    className="size-6"
-                    alt="icon"
-                  />
-                </div>
-                <p className="absolute transform -translate-x-1/2 left-1/2 -bottom-2 rounded-[20px] py-1 px-2 bg-monday-black text-white w-fit font-extrabold text-[8px]">
-                  PRO
-                </p>
-              </div>
+              <SearchButton />
             </div>
           </div>
           <UserProfileCard />
@@ -117,9 +89,7 @@ const UserList = () => {
                             />
                           </div>
                           <div className="flex flex-col gap-2 flex-1">
-                            <p className="font-semibold text-xl">
-                              {user.name}
-                            </p>
+                            <p className="font-semibold text-xl">{user.name}</p>
                             <p className="flex items-center gap-1 font-medium text-lg text-monday-gray">
                               <img
                                 src="assets/images/icons/call-grey.svg"
@@ -143,11 +113,12 @@ const UserList = () => {
                               User Role:
                             </p>
                             <p className="font-semibold text-lg text-nowrap">
-                            {user.roles?.join(", ") || "No Role"}
+                              {user.roles?.join(", ") || "No Role"}
                             </p>
                           </div>
                         </div>
-                        <Link to={`/users/edit/${user.id}`}
+                        <Link
+                          to={`/users/edit/${user.id}`}
                           className="btn btn-black min-w-[130px] font-semibold"
                         >
                           <img

@@ -6,6 +6,7 @@ import Sidebar from "../../components/Sidebar";
 import { useAssignUserRole } from "../../hooks/useAssignRoles";
 import UserProfileCard from "../../components/UserProfileCard";
 import { Link } from "react-router-dom";
+import SearchButton from "../../components/SearchButton";
 
 const AssignUserRole = () => {
   const { data: users, isPending: loadingUsers } = useFetchUsers();
@@ -35,7 +36,8 @@ const AssignUserRole = () => {
           <div className="flex items-center gap-6 h-[92px] bg-white w-full rounded-3xl p-[18px]">
             <div className="flex flex-col gap-[6px] w-full">
               <h1 className="font-bold text-2xl">Assign Role to User</h1>
-              <Link to={'/users'}
+              <Link
+                to={"/users"}
                 className="flex items-center gap-[6px] text-monday-gray font-semibold"
               >
                 <img
@@ -47,36 +49,7 @@ const AssignUserRole = () => {
               </Link>
             </div>
             <div className="flex items-center flex-nowrap gap-3">
-              <a href="#">
-                <div className="flex size-14 rounded-full bg-monday-gray-background items-center justify-center overflow-hidden">
-                  <img
-                    src="/assets/images/icons/search-normal-black.svg"
-                    className="size-6"
-                    alt="icon"
-                  />
-                </div>
-              </a>
-              <a href="#">
-                <div className="flex size-14 rounded-full bg-monday-gray-background items-center justify-center overflow-hidden">
-                  <img
-                    src="/assets/images/icons/notification-black.svg"
-                    className="size-6"
-                    alt="icon"
-                  />
-                </div>
-              </a>
-              <div className="relative w-fit">
-                <div className="flex size-14 rounded-full bg-monday-lime-green items-center justify-center overflow-hidden">
-                  <img
-                    src="/assets/images/icons/crown-black-fill.svg"
-                    className="size-6"
-                    alt="icon"
-                  />
-                </div>
-                <p className="absolute transform -translate-x-1/2 left-1/2 -bottom-2 rounded-[20px] py-1 px-2 bg-monday-black text-white w-fit font-extrabold text-[8px]">
-                  PRO
-                </p>
-              </div>
+              <SearchButton />
             </div>
           </div>
           <UserProfileCard />
@@ -159,9 +132,7 @@ const AssignUserRole = () => {
                 />
               </label>
               <div className="flex items-center justify-end gap-4">
-              <Link to={'/users'}
-                  className="btn btn-red font-semibold"
-                >
+                <Link to={"/users"} className="btn btn-red font-semibold">
                   Cancel
                 </Link>
 

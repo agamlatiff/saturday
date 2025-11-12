@@ -3,6 +3,7 @@ import Sidebar from "../../components/Sidebar";
 import { useFetchMerchants } from "../../hooks/useMerchants";
 import UserProfileCard from "../../components/UserProfileCard";
 import React from "react";
+import SearchButton from "../../components/SearchButton";
 
 const MerchantList = () => {
   const { data: merchants, isPending, isError, error } = useFetchMerchants(); // ✅ Use `isPending`
@@ -23,36 +24,7 @@ const MerchantList = () => {
               <h1 className="font-bold text-2xl">Manage Merchants</h1>
             </div>
             <div className="flex items-center flex-nowrap gap-3">
-              <a href="#">
-                <div className="flex size-14 rounded-full bg-monday-gray-background items-center justify-center overflow-hidden">
-                  <img
-                    src="/assets/images/icons/search-normal-black.svg"
-                    className="size-6"
-                    alt="icon"
-                  />
-                </div>
-              </a>
-              <a href="#">
-                <div className="flex size-14 rounded-full bg-monday-gray-background items-center justify-center overflow-hidden">
-                  <img
-                    src="/assets/images/icons/notification-black.svg"
-                    className="size-6"
-                    alt="icon"
-                  />
-                </div>
-              </a>
-              <div className="relative w-fit">
-                <div className="flex size-14 rounded-full bg-monday-lime-green items-center justify-center overflow-hidden">
-                  <img
-                    src="/assets/images/icons/crown-black-fill.svg"
-                    className="size-6"
-                    alt="icon"
-                  />
-                </div>
-                <p className="absolute transform -translate-x-1/2 left-1/2 -bottom-2 rounded-[20px] py-1 px-2 bg-monday-black text-white w-fit font-extrabold text-[8px]">
-                  PRO
-                </p>
-              </div>
+              <SearchButton />
             </div>
           </div>
           <UserProfileCard />
@@ -122,7 +94,11 @@ const MerchantList = () => {
                                 className="size-6 flex shrink-0"
                                 alt="icon"
                               />
-                              <span>{merchant.keeper ?  merchant.keeper.name : "No Keeper"}</span>
+                              <span>
+                                {merchant.keeper
+                                  ? merchant.keeper.name
+                                  : "No Keeper"}
+                              </span>
                             </p>
                           </div>
                         </div>
@@ -133,16 +109,19 @@ const MerchantList = () => {
                             alt="icon"
                           />
                           <p className="font-semibold text-lg text-nowrap">
-                            {merchant.products ? merchant.products.length : 0} Products
+                            {merchant.products ? merchant.products.length : 0}{" "}
+                            Products
                           </p>
                         </div>
                         <div className="flex items-center gap-4">
-                          <Link to={`/merchant-products/${merchant.id}`}
+                          <Link
+                            to={`/merchant-products/${merchant.id}`}
                             className="btn btn-primary-opacity min-w-[130px] font-semibold"
                           >
                             Details
                           </Link>
-                          <Link to={`/merchants/edit/${merchant.id }`}
+                          <Link
+                            to={`/merchants/edit/${merchant.id}`}
                             className="btn btn-black min-w-[130px] font-semibold"
                           >
                             <img

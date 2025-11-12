@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { useFetchAllTransactions } from "../hooks/useTransactions"; 
-import { useFetchProduct } from "../hooks/useProducts"; 
+import { useFetchAllTransactions } from "../hooks/useTransactions";
+import { useFetchProduct } from "../hooks/useProducts";
 import Sidebar from "../components/Sidebar";
 import UserProfileCard from "../components/UserProfileCard";
+import SearchButton from "../components/SearchButton";
 
-const Overview = () => { 
-
+const Overview = () => {
   const { data: transactions, isPending } = useFetchAllTransactions();
 
   const [openTransactionIds, setOpenTransactionIds] = useState<number[]>([]);
@@ -31,14 +31,14 @@ const Overview = () => {
       (sum, tx) =>
         sum + tx.transaction_products.reduce((acc, p) => acc + p.quantity, 0),
       0
-    ) ?? 0; 
+    ) ?? 0;
 
   if (isPending) return <p>Loading data...</p>;
 
   return (
     <>
       <div id="main-container" className="flex flex-1">
-        <Sidebar/>
+        <Sidebar />
         <div id="Content" className="flex flex-col flex-1 p-6 pt-0">
           <div
             id="Top-Bar"
@@ -49,39 +49,10 @@ const Overview = () => {
                 <h1 className="font-bold text-2xl">Overview</h1>
               </div>
               <div className="flex items-center flex-nowrap gap-3">
-                <a href="#">
-                  <div className="flex size-14 rounded-full bg-monday-gray-background items-center justify-center overflow-hidden">
-                    <img
-                      src="assets/images/icons/search-normal-black.svg"
-                      className="size-6"
-                      alt="icon"
-                    />
-                  </div>
-                </a>
-                <a href="#">
-                  <div className="flex size-14 rounded-full bg-monday-gray-background items-center justify-center overflow-hidden">
-                    <img
-                      src="assets/images/icons/notification-black.svg"
-                      className="size-6"
-                      alt="icon"
-                    />
-                  </div>
-                </a>
-                <div className="relative w-fit">
-                  <div className="flex size-14 rounded-full bg-monday-lime-green items-center justify-center overflow-hidden">
-                    <img
-                      src="assets/images/icons/crown-black-fill.svg"
-                      className="size-6"
-                      alt="icon"
-                    />
-                  </div>
-                  <p className="absolute transform -translate-x-1/2 left-1/2 -bottom-2 rounded-[20px] py-1 px-2 bg-monday-black text-white w-fit font-extrabold text-[8px]">
-                    PRO
-                  </p>
-                </div>
+                <SearchButton />
               </div>
             </div>
-            <UserProfileCard/>
+            <UserProfileCard />
           </div>
           <main className="flex flex-col gap-6 flex-1">
             <section className="grid grid-cols-3 gap-6">
@@ -147,75 +118,7 @@ const Overview = () => {
               </div>
             </section>
             <div className="flex gap-6 flex-1">
-              <section className="flex flex-col gap-6 w-[262px] shrink-0">
-                <div className="flex flex-col rounded-3xl p-[18px] gap-9 blue-gradient">
-                  <div className="relative w-fit">
-                    <div className="flex size-14 rounded-full bg-monday-lime-green items-center justify-center overflow-hidden">
-                      <img
-                        src="assets/images/icons/crown-black-fill.svg"
-                        className="size-6"
-                        alt="icon"
-                      />
-                    </div>
-                    <p className="absolute transform -translate-x-1/2 left-1/2 -bottom-2 rounded-[20px] py-1 px-2 bg-monday-black text-white w-fit font-extrabold text-[8px]">
-                      PRO
-                    </p>
-                  </div>
-                  <div className="flex flex-col gap-[18px]">
-                    <div className="flex flex-col gap-[6px]">
-                      <p className="font-medium text-monday-lime-green-char">
-                        — Access Pro Featured
-                      </p>
-                      <p className="font-extrabold text-2xl text-white">
-                        Track, Manage, and Distribute Stock Easily! 🎯
-                      </p>
-                    </div>
-                    <a
-                      href="#"
-                      className="flex items-center justify-between rounded-2xl p-4 gap-[10px] bg-white"
-                    >
-                      <p className="font-semibold">Upgrade Now</p>
-                      <img
-                        src="assets/images/icons/arrow-right-black.svg"
-                        className="flex size-6 shrink-0"
-                        alt="icon"
-                      />
-                    </a>
-                  </div>
-                </div>
-                <div className="flex flex-col rounded-3xl p-[18px] gap-9 bg-white">
-                  <div className="flex size-14 rounded-full bg-monday-blue/10 items-center justify-center">
-                    <img
-                      src="assets/images/icons/receive-square-blue-fill.svg"
-                      className="size-6"
-                      alt="icon"
-                    />
-                  </div>
-                  <div className="flex flex-col gap-[18px]">
-                    <div className="flex flex-col gap-[6px]">
-                      <p className="font-medium text-monday-blue">
-                        — Download Report
-                      </p>
-                      <p className="font-bold text-2xl">
-                        Download Your Sales Summary Instantly
-                      </p>
-                    </div>
-                    <a
-                      href="#"
-                      className="flex items-center justify-between rounded-2xl p-4 gap-[10px] bg-monday-blue/10"
-                    >
-                      <p className="font-semibold text-monday-blue">
-                        Download Now
-                      </p>
-                      <img
-                        src="assets/images/icons/arrow-right-blue.svg"
-                        className="flex size-6 shrink-0"
-                        alt="icon"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </section>
+
               <section
                 id="Lastest-Transaction"
                 className="flex flex-col gap-5 flex-1 rounded-3xl p-[18px] bg-white"

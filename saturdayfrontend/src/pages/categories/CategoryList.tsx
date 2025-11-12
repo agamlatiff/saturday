@@ -1,13 +1,12 @@
-import { Link,   } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Sidebar from "../../components/Sidebar";
 import { useFetchCategories } from "../../hooks/useCategories";
-import React from "react"; 
+import React from "react";
 import UserProfileCard from "../../components/UserProfileCard";
+import SearchButton from "../../components/SearchButton";
 
-const CategoryList = () => { 
+const CategoryList = () => {
   const { data: categories, isPending, isError, error } = useFetchCategories();
-
-  
 
   if (isPending) return <p>Loading categories...</p>;
   if (isError)
@@ -28,36 +27,7 @@ const CategoryList = () => {
               <h1 className="font-bold text-2xl">Manage Categories</h1>
             </div>
             <div className="flex items-center flex-nowrap gap-3">
-              <a href="#">
-                <div className="flex size-14 rounded-full bg-monday-gray-background items-center justify-center overflow-hidden">
-                  <img
-                    src="assets/images/icons/search-normal-black.svg"
-                    className="size-6"
-                    alt="icon"
-                  />
-                </div>
-              </a>
-              <a href="#">
-                <div className="flex size-14 rounded-full bg-monday-gray-background items-center justify-center overflow-hidden">
-                  <img
-                    src="assets/images/icons/notification-black.svg"
-                    className="size-6"
-                    alt="icon"
-                  />
-                </div>
-              </a>
-              <div className="relative w-fit">
-                <div className="flex size-14 rounded-full bg-monday-lime-green items-center justify-center overflow-hidden">
-                  <img
-                    src="assets/images/icons/crown-black-fill.svg"
-                    className="size-6"
-                    alt="icon"
-                  />
-                </div>
-                <p className="absolute transform -translate-x-1/2 left-1/2 -bottom-2 rounded-[20px] py-1 px-2 bg-monday-black text-white w-fit font-extrabold text-[8px]">
-                  PRO
-                </p>
-              </div>
+              <SearchButton />
             </div>
           </div>
           <UserProfileCard />

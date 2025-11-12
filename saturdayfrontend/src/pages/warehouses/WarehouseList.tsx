@@ -3,6 +3,7 @@ import Sidebar from "../../components/Sidebar";
 import { useFetchWarehouses } from "../../hooks/useWarehouses";
 import UserProfileCard from "../../components/UserProfileCard";
 import React from "react";
+import SearchButton from "../../components/SearchButton";
 
 const WarehouseList = () => {
   const { data: warehouses, isPending, isError, error } = useFetchWarehouses();
@@ -26,36 +27,7 @@ const WarehouseList = () => {
               <h1 className="font-bold text-2xl">Manage Warehouses</h1>
             </div>
             <div className="flex items-center flex-nowrap gap-3">
-              <a href="#">
-                <div className="flex size-14 rounded-full bg-monday-gray-background items-center justify-center overflow-hidden">
-                  <img
-                    src="assets/images/icons/search-normal-black.svg"
-                    className="size-6"
-                    alt="icon"
-                  />
-                </div>
-              </a>
-              <a href="#">
-                <div className="flex size-14 rounded-full bg-monday-gray-background items-center justify-center overflow-hidden">
-                  <img
-                    src="assets/images/icons/notification-black.svg"
-                    className="size-6"
-                    alt="icon"
-                  />
-                </div>
-              </a>
-              <div className="relative w-fit">
-                <div className="flex size-14 rounded-full bg-monday-lime-green items-center justify-center overflow-hidden">
-                  <img
-                    src="assets/images/icons/crown-black-fill.svg"
-                    className="size-6"
-                    alt="icon"
-                  />
-                </div>
-                <p className="absolute transform -translate-x-1/2 left-1/2 -bottom-2 rounded-[20px] py-1 px-2 bg-monday-black text-white w-fit font-extrabold text-[8px]">
-                  PRO
-                </p>
-              </div>
+              <SearchButton />
             </div>
           </div>
           <UserProfileCard />
@@ -140,12 +112,14 @@ const WarehouseList = () => {
                           </p>
                         </div>
                         <div className="flex items-center gap-4">
-                          <Link to={`/warehouse-products/${warehouse.id}`}
+                          <Link
+                            to={`/warehouse-products/${warehouse.id}`}
                             className="btn btn-primary-opacity min-w-[130px] font-semibold"
                           >
                             Details
                           </Link>
-                          <Link to={`/warehouses/edit/${warehouse.id}`}
+                          <Link
+                            to={`/warehouses/edit/${warehouse.id}`}
                             className="btn btn-black min-w-[130px] font-semibold"
                           >
                             <img

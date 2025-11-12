@@ -4,23 +4,25 @@ import { useFetchMerchantTransactions } from "../hooks/useTransactions";
 import UserProfileCard from "../components/UserProfileCard";
 import React, { useState } from "react";
 import { useFetchProduct } from "../hooks/useProducts";
+import SearchButton from "../components/SearchButton";
 
 const OverviewMerchant = () => {
   const { user } = useAuth();
   const merchant = user?.merchant;
   const hasMerchant = !!merchant?.id;
 
-  const { data: transactionsResponse  = [] } = useFetchMerchantTransactions({
+  const { data: transactionsResponse = [] } = useFetchMerchantTransactions({
     enabled: hasMerchant,
   });
-  
-  const transactions = transactionsResponse ?? [];  
 
-    const totalRevenue =
-  transactions.reduce((sum, tx) => sum + tx.grand_total, 0); 
+  const transactions = transactionsResponse ?? [];
 
-    const totalProductsSold =
-  transactions.reduce(
+  const totalRevenue = transactions.reduce(
+    (sum, tx) => sum + tx.grand_total,
+    0
+  );
+
+  const totalProductsSold = transactions.reduce(
     (sum, tx) =>
       sum + tx.transaction_products.reduce((acc, p) => acc + p.quantity, 0),
     0
@@ -55,15 +57,7 @@ const OverviewMerchant = () => {
                 <h1 className="font-bold text-2xl">Merchant Overview</h1>
               </div>
               <div className="flex items-center flex-nowrap gap-3">
-                <a href="#">
-                  <div className="flex size-14 rounded-full bg-monday-gray-background items-center justify-center overflow-hidden">
-                    <img
-                      src="assets/images/icons/search-normal-black.svg"
-                      className="size-6"
-                      alt="icon"
-                    />
-                  </div>
-                </a>
+                <SearchButton />
                 <a href="#">
                   <div className="flex size-14 rounded-full bg-monday-gray-background items-center justify-center overflow-hidden">
                     <img

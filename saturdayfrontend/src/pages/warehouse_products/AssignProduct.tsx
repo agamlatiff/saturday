@@ -9,6 +9,7 @@ import { useFetchProducts } from "../../hooks/useProducts";
 import { useAssignWarehouseProduct } from "../../hooks/useWarehouseProducts";
 import { ApiErrorResponse, AssignWarehouseProductPayload } from "../../types/types";
 import UserProfileCard from "../../components/UserProfileCard";
+import SearchButton from "../../components/SearchButton";
 
 const AssignWarehouseProduct = () => {
   const { id } = useParams<{ id: string }>(); // Get warehouse ID from URL
@@ -83,15 +84,7 @@ const AssignWarehouseProduct = () => {
           </Link>
         </div>
         <div className="flex items-center flex-nowrap gap-3">
-          <a href="#">
-            <div className="flex size-14 rounded-full bg-monday-gray-background items-center justify-center overflow-hidden">
-              <img
-                src="/assets/images/icons/search-normal-black.svg"
-                className="size-6"
-                alt="icon"
-              />
-            </div>
-          </a>
+          <SearchButton />
           <a href="#">
             <div className="flex size-14 rounded-full bg-monday-gray-background items-center justify-center overflow-hidden">
               <img

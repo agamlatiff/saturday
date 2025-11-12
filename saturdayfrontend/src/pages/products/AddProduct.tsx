@@ -9,6 +9,7 @@ import { Link,   } from "react-router-dom";
 import { useRef, useState } from "react";
 import { ProductFormData, productSchema } from "../../schemas/productSchema";
 import UserProfileCard from "../../components/UserProfileCard";
+import SearchButton from "../../components/SearchButton";
 
 const AddProduct = () => {
   const { mutate: createProduct, isPending } = useCreateProduct();
@@ -83,15 +84,7 @@ const AddProduct = () => {
                 </Link>
             </div>
             <div className="flex items-center flex-nowrap gap-3">
-              <a href="#">
-                <div className="flex size-14 rounded-full bg-monday-gray-background items-center justify-center overflow-hidden">
-                  <img
-                    src="/assets/images/icons/search-normal-black.svg"
-                    className="size-6"
-                    alt="icon"
-                  />
-                </div>
-              </a>
+              <SearchButton />
               <a href="#">
                 <div className="flex size-14 rounded-full bg-monday-gray-background items-center justify-center overflow-hidden">
                   <img

@@ -14,6 +14,7 @@ import { AxiosError } from "axios";
 import { ApiErrorResponse } from "../../types/types";
 import UserProfileCard from "../../components/UserProfileCard";
 import { useFetchWarehouse } from "../../hooks/useWarehouses";
+import SearchButton from "../../components/SearchButton";
 
 const EditAssignProduct = () => {
   const { merchantId, productId } = useParams<{
@@ -28,7 +29,7 @@ const EditAssignProduct = () => {
   const { data: product, isLoading: loadingProduct } = useFetchProduct(
     Number(productId)
   );
-  const { mutate: updateStock, isPending, error } = useUpdateMerchantProduct();
+  const { mutate: updateStock } = useUpdateMerchantProduct();
 
   const merchantProduct = merchant?.products?.find(
     (product) => product.id === Number(productId)
@@ -36,9 +37,7 @@ const EditAssignProduct = () => {
 
   const warehouseId = merchantProduct?.pivot?.warehouse_id;
 
-  const { data: warehouse, isLoading: loadingWarehouse } = useFetchWarehouse(
-    Number(warehouseId)
-  );
+  const { data: warehouse } = useFetchWarehouse(Number(warehouseId));
 
   const initialStock =
     merchantProduct?.pivot?.stock || product?.merchant_stock || 0;
@@ -121,16 +120,8 @@ const EditAssignProduct = () => {
             Merchant Details
           </Link>
         </div>
-        <div className="flex items-center flex-nowrap gap-3">
-          <a href="#">
-            <div className="flex size-14 rounded-full bg-monday-gray-background items-center justify-center overflow-hidden">
-              <img
-                src="/assets/images/icons/search-normal-black.svg"
-                className="size-6"
-                alt="icon"
-              />
-            </div>
-          </a>
+          <div className="flex items-center flex-nowrap gap-3">
+            <SearchButton />
           <a href="#">
             <div className="flex size-14 rounded-full bg-monday-gray-background items-center justify-center overflow-hidden">
               <img

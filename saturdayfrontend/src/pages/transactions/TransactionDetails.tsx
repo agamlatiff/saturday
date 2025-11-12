@@ -3,6 +3,7 @@ import Sidebar from "../../components/Sidebar";
 import { useFetchTransaction } from "../../hooks/useTransactions";
 import UserProfileCard from "../../components/UserProfileCard";
 import { useMyMerchantProfile } from "../../hooks/useMerchants";
+import SearchButton from "../../components/SearchButton";
 
 const TransactionDetails = () => {
   const { id } = useParams<{ id: string }>(); // Get transaction ID from URL
@@ -33,15 +34,7 @@ const TransactionDetails = () => {
           </Link>
         </div>
         <div className="flex items-center flex-nowrap gap-3">
-          <a href="#">
-            <div className="flex size-14 rounded-full bg-monday-gray-background items-center justify-center overflow-hidden">
-              <img
-                src="/assets/images/icons/search-normal-black.svg"
-                className="size-6"
-                alt="icon"
-              />
-            </div>
-          </a>
+          <SearchButton />
           <a href="#">
             <div className="flex size-14 rounded-full bg-monday-gray-background items-center justify-center overflow-hidden">
               <img

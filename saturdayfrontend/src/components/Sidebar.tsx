@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import { useState } from "react";
+import { navigationSections } from "../config/navigation";
 
 const Sidebar = () => {
   const { user } = useAuth();
@@ -17,119 +18,19 @@ const Sidebar = () => {
 
   const userRoles = user?.roles || [];
 
-  const sidebarMenus = [
-    {
-      section: "Main Menu",
-      items: [
-        {
-          label: "Overview",
-          path: "/overview",
-          iconBlack: "/assets/images/icons/home-black.svg",
-          iconBlue: "/assets/images/icons/home-blue-fill.svg",
-          roles: ["manager"],
-        },
-        {
-          label: "Overview",
-          path: "/overview-merchant",
-          iconBlack: "/assets/images/icons/home-black.svg",
-          iconBlue: "/assets/images/icons/home-blue-fill.svg",
-          roles: ["keeper"],
-        },
-        {
-          label: "Products",
-          path: "/products",
-          iconBlack: "/assets/images/icons/bag-black.svg",
-          iconBlue: "/assets/images/icons/bag-blue-fill.svg",
-          roles: ["manager"],
-        },
-        {
-          label: "Transactions",
-          path: "/transactions",
-          iconBlack: "/assets/images/icons/card-black.svg",
-          iconBlue: "/assets/images/icons/card-blue-fill.svg",
-          roles: ["keeper"],
-        },
-        {
-          label: "Categories",
-          path: "/categories",
-          iconBlack: "/assets/images/icons/note-2-black.svg",
-          iconBlue: "/assets/images/icons/note-2-blue-fill.svg",
-          roles: ["manager"],
-        },
-        {
-          label: "Warehouses",
-          path: "/warehouses",
-          iconBlack: "/assets/images/icons/buildings-2-black.svg",
-          iconBlue: "/assets/images/icons/buildings-2-blue-fill.svg",
-          roles: ["manager"],
-        },
-        {
-          label: "Merchants",
-          path: "/merchants",
-          iconBlack: "/assets/images/icons/shop-black.svg",
-          iconBlue: "/assets/images/icons/shop-blue-fill.svg",
-          roles: ["manager"],
-        },
-        {
-          label: "My Merchant",
-          path: "/my-merchant",
-          iconBlack: "/assets/images/icons/shop-black.svg",
-          iconBlue: "/assets/images/icons/shop-blue-fill.svg",
-          roles: ["keeper"],
-        },
-      ],
-    },
-    {
-      section: "Account Settings",
-      items: [
-        {
-          label: "Roles",
-          path: "/roles",
-          iconBlack: "/assets/images/icons/stickynote-black.svg",
-          iconBlue: "/assets/images/icons/stickynote-blue-fill.svg",
-          roles: ["manager"],
-        },
-        {
-          label: "Manage Users",
-          iconBlack: "/assets/images/icons/user-square-black.svg",
-          iconBlue: "/assets/images/icons/user-square-black.svg",
-          roles: ["manager"],
-          children: [
-            {
-              label: "Users List",
-              path: "/users",
-              iconBlack: "/assets/images/icons/profile-2user-black.svg",
-              iconBlue: "/assets/images/icons/profile-2user-blue-fill.svg",
-            },
-            {
-              label: "Assign Role",
-              path: "/users/assign-roles",
-              iconBlack: "/assets/images/icons/profile-tick-black.svg",
-              iconBlue: "/assets/images/icons/profile-tick-blue.svg",
-            },
-          ],
-        }, 
-        {
-          label: "Settings",
-          path: "/settings",
-          iconBlack: "/assets/images/icons/setting-black.svg",
-          iconBlue: "/assets/images/icons/setting-black.svg",
-          roles: ["manager", "keeper"],
-        },
-      ],
-    },
-  ];
-
   return (
     <aside className="relative flex h-auto w-[280px] shrink-0 bg-white">
       <div className="flex flex-col fixed top-0 w-[280px] shrink-0 h-screen pt-[30px] px-4 gap-[30px]">
-        <img
-          src="/assets/images/logos/logo.svg"
-          className="h-8 w-fit"
-          alt="logo"
-        />
+        <div className="flex items-center gap-2 mx-auto">
+          <img
+            src="/assets/images/logos/warehouse.png"
+            className="w-[50px] mx-auto"
+            alt="logo"
+          />
+          <h1 className="font-bold text-3xl">Saturday</h1>
+        </div>
         <div className="flex flex-col gap-5 overflow-y-scroll hide-scrollbar h-full overscroll-contain">
-          {sidebarMenus.map((section) => {
+          {navigationSections.map((section) => {
             const visibleItems = section.items.filter((item) =>
               item.roles?.some((r) => userRoles.includes(r))
             );
@@ -147,7 +48,13 @@ const Sidebar = () => {
                     const isAccordion = !!item.children;
 
                     if (isAccordion) {
+                      const childItems = item.children ?? [];
+                      const hasChildren = childItems.length > 0;
                       const isOpen = openAccordions.includes(item.label);
+
+                      if (!hasChildren) {
+                        return null;
+                      }
                       return (
                         <li key={item.label} className="group flex flex-col">
                           <button
@@ -182,7 +89,7 @@ const Sidebar = () => {
                                 />
                               </div>
                               <ul className="flex flex-col gap-1 w-full">
-                                {item.children.map((child) => {
+                                {childItems.map((child) => {
                                   const isChildActive =
                                     location.pathname === child.path;
                                   return (
@@ -239,6 +146,10 @@ const Sidebar = () => {
                           )}
                         </li>
                       );
+                    }
+
+                    if (!item.path) {
+                      return null;
                     }
 
                     return (

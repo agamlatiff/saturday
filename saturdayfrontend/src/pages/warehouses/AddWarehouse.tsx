@@ -11,6 +11,7 @@ import { ApiErrorResponse } from "../../types/types";
 import UserProfileCard from "../../components/UserProfileCard";
 import { Link } from "react-router-dom";
 import { useRef, useState } from "react";
+import SearchButton from "../../components/SearchButton";
 
 const AddWarehouse = () => {
   const { mutate: createWarehouse, isPending } = useCreateWarehouse();
@@ -81,15 +82,7 @@ const AddWarehouse = () => {
               </Link>
             </div>
             <div className="flex items-center flex-nowrap gap-3">
-              <a href="#">
-                <div className="flex size-14 rounded-full bg-monday-gray-background items-center justify-center overflow-hidden">
-                  <img
-                    src="/assets/images/icons/search-normal-black.svg"
-                    className="size-6"
-                    alt="icon"
-                  />
-                </div>
-              </a>
+              <SearchButton />
               <a href="#">
                 <div className="flex size-14 rounded-full bg-monday-gray-background items-center justify-center overflow-hidden">
                   <img
@@ -236,9 +229,7 @@ const AddWarehouse = () => {
               )}
 
               <div className="flex items-center justify-end gap-4">
-                <Link to={'/warehouses'}
-                  className="btn btn-red font-semibold"
-                >
+                <Link to={"/warehouses"} className="btn btn-red font-semibold">
                   Cancel
                 </Link>
                 <button type="submit" className="btn btn-primary font-semibold">
