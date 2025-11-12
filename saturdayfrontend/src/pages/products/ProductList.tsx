@@ -4,6 +4,13 @@ import { useFetchProduct, useFetchProducts } from "../../hooks/useProducts";
 import React, { useState } from "react";
 import UserProfileCard from "../../components/UserProfileCard";
 import SearchButton from "../../components/SearchButton";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+  DropdownMenuItem,
+} from "../../../components/ui/dropdown-menu";
+import { EllipsisVertical } from "lucide-react";
 
 const ProductList = () => {
   const { data: products, isPending, isError, error } = useFetchProducts();
@@ -19,9 +26,12 @@ const ProductList = () => {
 
   return (
     <>
-      <div id="main-container" className="flex flex-1">
+      <div id="main-container" className="lg:flex flex-1">
         <Sidebar />
-        <div id="Content" className="flex flex-col flex-1 p-6 pt-0">
+        <div
+          id="Content"
+          className="flex flex-col flex-1 p-6 pt-0 overflow-hidden"
+        >
           <div
             id="Top-Bar"
             className="flex items-center w-full gap-6 mt-[30px] mb-6"
@@ -36,7 +46,7 @@ const ProductList = () => {
             </div>
             <UserProfileCard />
           </div>
-          <main className="flex flex-col gap-6 flex-1">
+          <main className="flex flex-col gap-6 flex-1 w-full">
             <section
               id="Products"
               className="flex flex-col gap-6 flex-1 rounded-3xl p-[18px] px-0 bg-white"
@@ -64,7 +74,7 @@ const ProductList = () => {
                   to="/products/add"
                   className="btn btn-primary font-semibold"
                 >
-                  Add New
+                  <p className="hidden sm:block">Add New</p>
                   <img
                     src="assets/images/icons/add-square-white.svg"
                     className="flex sixe-6 shrink-0"
@@ -82,11 +92,11 @@ const ProductList = () => {
                 </div>
 
                 {products.length > 0 ? (
-                  <div className="flex flex-col gap-5">
+                  <div className="flex flex-col  gap-5">
                     {products.map((product) => (
                       <React.Fragment key={product.id}>
-                        <div className="card flex items-center justify-between gap-3">
-                          <div className="flex items-center gap-3 w-[380px] shrink-0">
+                        <div className="card flex items-center justify-between gap-3 ">
+                          <div className="flex items-center gap-3 w-full max-w-[380px] min-w-0">
                             <div className="flex size-[86px] rounded-2xl bg-monday-background items-center justify-center overflow-hidden">
                               <img
                                 src={product.thumbnail}
@@ -103,36 +113,70 @@ const ProductList = () => {
                               </p>
                             </div>
                           </div>
-                          <div className="flex items-center gap-[6px] min-w-[212px]">
+                          <div className="flex items-center gap-[6px] ">
                             <img
                               src={product.category.photo}
-                              className="size-6 flex shrink-0"
+                              className="size-6 shrink-0 flex "
                               alt="icon"
                             />
-                            <p className="font-semibold text-lg text-nowrap">
+                            <p className="font-semibold text-lg text-nowrap w-[70px] sm:w-[100px] md:w-[124px] truncate">
                               {product.category.name}
                             </p>
                           </div>
+
+
                           <div className="flex items-center gap-4">
-                            <button
-                              onClick={() => {
-                                setSelectedProductId(product.id);
-                              }}
-                              className="btn btn-primary-opacity min-w-[130px] font-semibold"
-                            >
-                              Details
-                            </button>
-                            <Link
-                              to={`/products/edit/${product.id}`}
-                              className="btn btn-black min-w-[130px] font-semibold"
-                            >
-                              <img
-                                src="assets/images/icons/edit-white.svg"
-                                className="flex size-6 shrink-0"
-                                alt="icon"
-                              />
-                              Edit
-                            </Link>
+                            <DropdownMenu>
+                              <DropdownMenuTrigger className="xl:hidden flex items-center">
+                                <EllipsisVertical />
+                              </DropdownMenuTrigger>
+                              <DropdownMenuContent>
+                                <DropdownMenuItem>
+                                  <button
+                                    onClick={() => {
+                                      setSelectedProductId(product.id);
+                                    }}
+                                    className="btn btn-primary-opacity font-semibold"
+                                  >
+                                    Details
+                                  </button>
+                                </DropdownMenuItem>
+                                <DropdownMenuItem>
+                                  <Link
+                                    to={`/products/edit/${product.id}`}
+                                    className="btn btn-black font-semibold"
+                                  >
+                                    <img
+                                      src="assets/images/icons/edit-white.svg"
+                                      className="flex size-6 shrink-0"
+                                      alt="icon"
+                                    />
+                                    Edit
+                                  </Link>
+                                </DropdownMenuItem>
+                              </DropdownMenuContent>
+                            </DropdownMenu>
+                            <div className=" items-center gap-4 hidden xl:flex">
+                              <button
+                                onClick={() => {
+                                  setSelectedProductId(product.id);
+                                }}
+                                className="btn btn-primary-opacity font-semibold"
+                              >
+                                Details
+                              </button>
+                              <Link
+                                to={`/products/edit/${product.id}`}
+                                className="btn btn-black font-semibold"
+                              >
+                                <img
+                                  src="assets/images/icons/edit-white.svg"
+                                  className="flex size-6 shrink-0"
+                                  alt="icon"
+                                />
+                                Edit
+                              </Link>
+                            </div>
                           </div>
                         </div>
                         <hr className="border-monday-border last:hidden" />
@@ -161,12 +205,12 @@ const ProductList = () => {
       </div>
 
       {selectedProductId && selectedProduct && (
-        <div className="modal flex flex-1 items-center justify-center h-full fixed top-0 w-full">
+        <div className="modal flex flex-1 items-center justify-center h-full fixed top-0 w-full ">
           <div
             onClick={() => setSelectedProductId(null)}
-            className="absolute w-full h-full bg-[#292D32B2] cursor-pointer"
+            className="absolute w-full h-full bg-[#292D32B2] cursor-pointer "
           />
-          <div className="relative flex flex-col w-[406px] shrink-0 rounded-3xl p-[18px] gap-5 bg-white">
+          <div className="relative flex flex-col  max-w-[406px] rounded-3xl p-[18px] gap-5 bg-white w-full">
             <div className="modal-header flex items-center justify-between">
               <p className="font-semibold text-xl">Product Details</p>
               <button

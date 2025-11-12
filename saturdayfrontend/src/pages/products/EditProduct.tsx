@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Link,  useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Sidebar from "../../components/Sidebar";
 import { useFetchProduct, useUpdateProduct } from "../../hooks/useProducts";
 import { useFetchCategories } from "../../hooks/useCategories";
@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ProductFormData, productSchema } from "../../schemas/productSchema";
 import { AxiosError } from "axios";
-import { ApiErrorResponse } from "../../types/types"; 
+import { ApiErrorResponse } from "../../types/types";
 import UserProfileCard from "../../components/UserProfileCard";
 import SearchButton from "../../components/SearchButton";
 
@@ -16,8 +16,7 @@ const EditProduct = () => {
   const { data: product, isPending } = useFetchProduct(Number(id));
   const { mutate: updateProduct, isPending: isUpdating } = useUpdateProduct();
   const { data: categories, isPending: categoriesLoading } =
-    useFetchCategories(); 
- 
+    useFetchCategories();
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [imagePreview, setImagePreview] = useState(
@@ -42,7 +41,7 @@ const EditProduct = () => {
       setValue("category_id", product.category_id);
       setValue("is_popular", product.is_popular);
       if (product.thumbnail) {
-        setImagePreview(product.thumbnail);  
+        setImagePreview(product.thumbnail);
       }
     }
   }, [product, setValue]);
@@ -96,33 +95,12 @@ const EditProduct = () => {
             </div>
             <div className="flex items-center flex-nowrap gap-3">
               <SearchButton />
-              <a href="#">
-                <div className="flex size-14 rounded-full bg-monday-gray-background items-center justify-center overflow-hidden">
-                  <img
-                    src="/assets/images/icons/notification-black.svg"
-                    className="size-6"
-                    alt="icon"
-                  />
-                </div>
-              </a>
-              <div className="relative w-fit">
-                <div className="flex size-14 rounded-full bg-monday-lime-green items-center justify-center overflow-hidden">
-                  <img
-                    src="/assets/images/icons/crown-black-fill.svg"
-                    className="size-6"
-                    alt="icon"
-                  />
-                </div>
-                <p className="absolute transform -translate-x-1/2 left-1/2 -bottom-2 rounded-[20px] py-1 px-2 bg-monday-black text-white w-fit font-extrabold text-[8px]">
-                  PRO
-                </p>
-              </div>
             </div>
           </div>
           <UserProfileCard />
         </div>
         <main className="flex flex-col gap-6 flex-1">
-          <div className="flex gap-6">
+          <div className="flex gap-6 flex-col xl:flex-row">
             <form
               onSubmit={handleSubmit(onSubmit)}
               className="flex flex-col w-full rounded-3xl p-[18px] gap-5 bg-white"
@@ -304,9 +282,7 @@ const EditProduct = () => {
                 <p className="text-red-500">{errors.about.message}</p>
               )}
               <div className="flex items-center justify-end gap-4">
-              <Link to={'/products'}
-                  className="btn btn-red font-semibold"
-                >
+                <Link to={"/products"} className="btn btn-red font-semibold">
                   Cancel
                 </Link>
                 <button type="submit" className="btn btn-primary font-semibold">
@@ -314,62 +290,66 @@ const EditProduct = () => {
                 </button>
               </div>
             </form>
-            <div className="flex flex-col w-[392px] shrink-0 h-fit rounded-3xl p-[18px] gap-3 bg-white">
-              <p className="font-semibold">Quick Guide to Adding Products</p>
+            <div className="flex flex-col w-full h-fit rounded-3xl p-[18px] gap-3 bg-white">
+              <p className="font-semibold">Quick Guide to Edit Product</p>
               <ul className="flex flex-col gap-4">
                 <li className="flex gap-[6px]">
                   <img
                     src="/assets/images/icons/Checklist-green-circle.svg"
                     className="flex size-6 shrink-0"
-                    alt="icon"
+                    alt="check icon"
                   />
                   <p className="font-medium leading-[140%]">
-                    Use Clear and High-Quality Photos for Better Results lorem
-                    ipsum mix
+                    Use clear, high-resolution photographs to present products
+                    in a professional manner.
                   </p>
                 </li>
+
                 <li className="flex gap-[6px]">
                   <img
                     src="/assets/images/icons/Checklist-green-circle.svg"
                     className="flex size-6 shrink-0"
-                    alt="icon"
+                    alt="check icon"
                   />
                   <p className="font-medium leading-[140%]">
-                    Ensure the Product Name is Relevant and Descriptive less
-                    lorem ipsum
+                    Provide a concise, accurate, and easily searchable product
+                    name.
                   </p>
                 </li>
+
                 <li className="flex gap-[6px]">
                   <img
                     src="/assets/images/icons/Checklist-green-circle.svg"
                     className="flex size-6 shrink-0"
-                    alt="icon"
+                    alt="check icon"
                   />
                   <p className="font-medium leading-[140%]">
-                    Choose the Right Product Category for Accuracy lorem ipsum
-                    simply
+                    Assign the product to the most appropriate category to
+                    ensure correct classification.
                   </p>
                 </li>
+
                 <li className="flex gap-[6px]">
                   <img
                     src="/assets/images/icons/Checklist-green-circle.svg"
                     className="flex size-6 shrink-0"
-                    alt="icon"
+                    alt="check icon"
                   />
                   <p className="font-medium leading-[140%]">
-                    Maximum Image Size of 2MB for Uploads lorem ipsum text
-                    simply
+                    Ensure uploaded images are under 2MB to optimize upload
+                    performance and storage.
                   </p>
                 </li>
+
                 <li className="flex gap-[6px]">
                   <img
                     src="/assets/images/icons/Checklist-green-circle.svg"
                     className="flex size-6 shrink-0"
-                    alt="icon"
+                    alt="check icon"
                   />
                   <p className="font-medium leading-[140%]">
-                    Review Everything Carefully Before Publishing lorem ipsum
-                    color amet
+                    Verify all product details for accuracy and compliance prior
+                    to publishing.
                   </p>
                 </li>
               </ul>

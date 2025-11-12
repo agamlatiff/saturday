@@ -4,6 +4,13 @@ import { useFetchWarehouses } from "../../hooks/useWarehouses";
 import UserProfileCard from "../../components/UserProfileCard";
 import React from "react";
 import SearchButton from "../../components/SearchButton";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "../../../components/ui/dropdown-menu";
+import { EllipsisVertical } from "lucide-react";
 
 const WarehouseList = () => {
   const { data: warehouses, isPending, isError, error } = useFetchWarehouses();
@@ -52,7 +59,7 @@ const WarehouseList = () => {
                     {warehouses.length} Total Warehouses
                   </span>
                 </p>
-                <p className="font-semibold text-lg text-monday-gray">
+                <p className="font-semibold text-lg text-monday-gray text-wrap max-w-xs sm:max-w-none">
                   View and update your Warehouses list here.
                 </p>
               </div>
@@ -60,7 +67,7 @@ const WarehouseList = () => {
                 to={"/warehouses/add"}
                 className="btn btn-primary font-semibold"
               >
-                Add New
+               <p className="hidden sm:block">Add New</p>
                 <img
                   src="assets/images/icons/add-square-white.svg"
                   className="flex sixe-6 shrink-0"
@@ -78,7 +85,7 @@ const WarehouseList = () => {
                 <div className="flex flex-col gap-5">
                   {warehouses.map((warehouse) => (
                     <React.Fragment key={warehouse.id}>
-                      <div className="card flex items-center justify-between gap-3">
+                      <div className="card flex items-center justify-between gap-3 flex-wrap sm:flex-nowrap">
                         <div className="flex items-center gap-3 w-[360px] shrink-0">
                           <div className="flex size-[86px] rounded-2xl bg-monday-background items-center justify-center overflow-hidden">
                             <img
@@ -101,34 +108,66 @@ const WarehouseList = () => {
                             </p>
                           </div>
                         </div>
-                        <div className="flex items-center gap-2 w-full justify-center">
+                        <div className=" items-center gap-2 w-full justify-center hidden sm:flex">
                           <img
                             src="assets/images/icons/bag-black.svg"
                             className="size-6 flex shrink-0"
                             alt="icon"
                           />
-                          <p className="font-semibold text-lg text-nowrap">
+                          <p className="font-semibold text-lg text-nowrap ">
                             {warehouse.products.length || 0} Products
                           </p>
                         </div>
                         <div className="flex items-center gap-4">
-                          <Link
-                            to={`/warehouse-products/${warehouse.id}`}
-                            className="btn btn-primary-opacity min-w-[130px] font-semibold"
-                          >
-                            Details
-                          </Link>
-                          <Link
-                            to={`/warehouses/edit/${warehouse.id}`}
-                            className="btn btn-black min-w-[130px] font-semibold"
-                          >
-                            <img
-                              src="assets/images/icons/edit-white.svg"
-                              className="flex size-6 shrink-0"
-                              alt="icon"
-                            />
-                            Edit
-                          </Link>
+                          <DropdownMenu>
+                            <DropdownMenuTrigger className="xl:hidden flex items-center">
+                              <EllipsisVertical />
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent className="xl:hidden block">
+                              <DropdownMenuItem>
+                                {" "}
+                                <Link
+                                  to={`/warehouse-products/${warehouse.id}`}
+                                  className="btn btn-primary-opacity min-w-[130px] font-semibold"
+                                >
+                                  Details
+                                </Link>
+                              </DropdownMenuItem>
+                              <DropdownMenuItem>
+                                {" "}
+                                <Link
+                                  to={`/warehouses/edit/${warehouse.id}`}
+                                  className="btn btn-black min-w-[130px] font-semibold"
+                                >
+                                  <img
+                                    src="assets/images/icons/edit-white.svg"
+                                    className="flex size-6 shrink-0"
+                                    alt="icon"
+                                  />
+                                  Edit
+                                </Link>
+                              </DropdownMenuItem>
+                            </DropdownMenuContent>
+                          </DropdownMenu>
+                          <div className=" items-center gap-2 hidden xl:flex">
+                            <Link
+                              to={`/warehouse-products/${warehouse.id}`}
+                              className="btn btn-primary-opacity min-w-[130px] font-semibold"
+                            >
+                              Details
+                            </Link>
+                            <Link
+                              to={`/warehouses/edit/${warehouse.id}`}
+                              className="btn btn-black min-w-[130px] font-semibold"
+                            >
+                              <img
+                                src="assets/images/icons/edit-white.svg"
+                                className="flex size-6 shrink-0"
+                                alt="icon"
+                              />
+                              Edit
+                            </Link>
+                          </div>
                         </div>
                       </div>
                       <hr className="border-monday-border last:hidden" />

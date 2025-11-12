@@ -16,7 +16,7 @@ const SearchButton = ({ className = "" }: SearchButtonProps) => {
     >
       <img
         src="/assets/images/icons/search-normal-black.svg"
-        className="size-6"
+        className="sm:size-6 size-5"
         alt="search"
       />
     </button>

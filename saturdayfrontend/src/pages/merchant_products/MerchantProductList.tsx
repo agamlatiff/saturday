@@ -5,6 +5,13 @@ import React, { useState } from "react";
 import { useFetchProduct } from "../../hooks/useProducts";
 import UserProfileCard from "../../components/UserProfileCard";
 import SearchButton from "../../components/SearchButton";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "../../../components/ui/dropdown-menu";
+import { EllipsisVertical } from "lucide-react";
 
 const MerchantProductList = () => {
   const { id } = useParams<{ id: string }>(); // Get Merchant ID from URL
@@ -36,7 +43,7 @@ const MerchantProductList = () => {
                 >
                   <img
                     src="/assets/images/icons/arrow-left-grey.svg"
-                    className="size-4 flex shrink-0"
+                    className="size-4 flex "
                     alt="icon"
                   />
                   Manage Merchants
@@ -44,27 +51,6 @@ const MerchantProductList = () => {
               </div>
               <div className="flex items-center flex-nowrap gap-3">
                 <SearchButton />
-                <a href="#">
-                  <div className="flex size-14 rounded-full bg-monday-gray-background items-center justify-center overflow-hidden">
-                    <img
-                      src="/assets/images/icons/notification-black.svg"
-                      className="size-6"
-                      alt="icon"
-                    />
-                  </div>
-                </a>
-                <div className="relative w-fit">
-                  <div className="flex size-14 rounded-full bg-monday-lime-green items-center justify-center overflow-hidden">
-                    <img
-                      src="/assets/images/icons/crown-black-fill.svg"
-                      className="size-6"
-                      alt="icon"
-                    />
-                  </div>
-                  <p className="absolute transform -translate-x-1/2 left-1/2 -bottom-2 rounded-[20px] py-1 px-2 bg-monday-black text-white w-fit font-extrabold text-[8px]">
-                    PRO
-                  </p>
-                </div>
               </div>
             </div>
             <UserProfileCard />
@@ -72,7 +58,7 @@ const MerchantProductList = () => {
           <main className="flex flex-col gap-6 flex-1">
             <section
               id="Warehouse-Info"
-              className="flex items-center justify-between rounded-3xl p-[18px] gap-3 bg-white"
+              className="flex items-center justify-between rounded-3xl p-[18px] gap-3 bg-white flex-col sm:flex-row"
             >
               <div className="flex size-16 rounded-2xl bg-monday-background items-center justify-center overflow-hidden">
                 <img
@@ -86,7 +72,7 @@ const MerchantProductList = () => {
                 <p className="flex items-center gap-1 font-medium text-lg text-monday-gray">
                   <img
                     src="/assets/images/icons/call-grey.svg"
-                    className="size-6 flex shrink-0"
+                    className="size-6 flex "
                     alt="icon"
                   />
                   <span>{merchant.phone}</span>
@@ -96,7 +82,7 @@ const MerchantProductList = () => {
                 <p className="flex items-center gap-1 font-medium text-monday-gray">
                   <img
                     src="/assets/images/icons/user-grey.svg"
-                    className="size-4 flex shrink-0"
+                    className="size-4 flex "
                     alt="icon"
                   />
                   <span>Keeper Name:</span>
@@ -112,7 +98,7 @@ const MerchantProductList = () => {
             </section>
             <section
               id="Products"
-              className="flex flex-col gap-6 flex-1 rounded-3xl p-[18px] px-0 bg-white"
+              className="flex flex-col gap-6 flex-1 rounded-3xl p-[18px] px-0 bg-white w-full"
             >
               <div
                 id="Header"
@@ -122,7 +108,7 @@ const MerchantProductList = () => {
                   <p className="flex items-center gap-[6px]">
                     <img
                       src="/assets/images/icons/buildings-2-black.svg"
-                      className="size-6 flex shrink-0"
+                      className="size-6 flex "
                       alt="icon"
                     />
                     <span className="font-semibold text-2xl">
@@ -137,10 +123,10 @@ const MerchantProductList = () => {
                   to={`/merchant-products/${id}/assign`}
                   className="btn btn-primary font-semibold"
                 >
-                  Assign a Products
+                  <p className="hidden md:block">Assign a Products</p>
                   <img
                     src="/assets/images/icons/add-square-white.svg"
-                    className="flex sixe-6 shrink-0"
+                    className="flex sixe-6 "
                     alt="icon"
                   />
                 </Link>
@@ -159,7 +145,7 @@ const MerchantProductList = () => {
                     {merchant.products.map((product) => (
                       <React.Fragment key={product.id}>
                         <div className="card flex items-center justify-between gap-6">
-                          <div className="flex items-center gap-3 w-[260px] shrink-0">
+                          <div className="flex items-center gap-3 w-[220px] md:w-[260px] ">
                             <div className="flex size-[86px] rounded-2xl bg-monday-background items-center justify-center overflow-hidden">
                               <img
                                 src={product.thumbnail}
@@ -176,41 +162,68 @@ const MerchantProductList = () => {
                               </p>
                             </div>
                           </div>
-                          <div className="flex items-center gap-[6px] w-[154px] shrink-0">
+                          <div className="flex items-center gap-[6px] md:w-[154px] ">
                             <img
                               src="/assets/images/icons/box-black.svg"
-                              className="size-6 flex shrink-0"
+                              className="size-6 flex "
                               alt="icon"
                             />
                             <p className="font-semibold text-lg text-nowrap w-[124px] truncate">
                               {product.pivot?.stock} Stock
                             </p>
                           </div>
-                          <div className="flex items-center gap-[6px] w-[154px] shrink-0">
+                          <div className="md:flex items-center gap-[6px] hidden md:w-[154px] ">
                             <img
                               src={product.category.photo}
-                              className="size-6 flex shrink-0"
+                              className="size-6 flex "
                               alt="icon"
                             />
-                            <p className="font-semibold text-lg text-nowrap w-[124px] truncate">
+                            <p className="font-semibold text-lg text-nowrap w-[124px] truncate ">
                               {product.category.name}
                             </p>
                           </div>
                           <div className="flex items-center gap-4">
-                            <button
-                              onClick={() => {
-                                setSelectedProductId(product.id);
-                              }}
-                              className="btn btn-primary-opacity min-w-[130px] font-semibold"
-                            >
-                              Details
-                            </button>
-                            <Link
-                              to={`/merchant-products/${id}/edit-assign/${product.id}`}
-                              className="btn btn-black min-w-[130px] font-semibold"
-                            >
-                              Add Stock
-                            </Link>
+                            <DropdownMenu>
+                              <DropdownMenuTrigger className="xl:hidden flex items-center">
+                                <EllipsisVertical />
+                              </DropdownMenuTrigger>
+                              <DropdownMenuContent className="xl:hidden block">
+                                <DropdownMenuItem>
+                                  <button
+                                    onClick={() => {
+                                      setSelectedProductId(product.id);
+                                    }}
+                                    className="btn btn-primary-opacity min-w-[130px] font-semibold"
+                                  >
+                                    Details
+                                  </button>
+                                </DropdownMenuItem>
+                                <DropdownMenuItem>
+                                  <Link
+                                    to={`/merchant-products/${id}/edit-assign/${product.id}`}
+                                    className="btn btn-black min-w-[130px] font-semibold"
+                                  >
+                                    Add Stock
+                                  </Link>
+                                </DropdownMenuItem>
+                              </DropdownMenuContent>
+                            </DropdownMenu>
+                            <div className=" items-center gap-2 hidden xl:flex">
+                              <button
+                                onClick={() => {
+                                  setSelectedProductId(product.id);
+                                }}
+                                className="btn btn-primary-opacity min-w-[130px] font-semibold"
+                              >
+                                Details
+                              </button>
+                              <Link
+                                to={`/merchant-products/${id}/edit-assign/${product.id}`}
+                                className="btn btn-black min-w-[130px] font-semibold"
+                              >
+                                Add Stock
+                              </Link>
+                            </div>
                           </div>
                         </div>
                         <hr className="border-monday-border last:hidden" />
@@ -243,7 +256,7 @@ const MerchantProductList = () => {
             onClick={() => setSelectedProductId(null)}
             className="absolute w-full h-full bg-[#292D32B2] cursor-pointer"
           />
-          <div className="relative flex flex-col w-[406px] shrink-0 rounded-3xl p-[18px] gap-5 bg-white">
+          <div className="relative flex flex-col w-[406px]  rounded-3xl p-[18px] gap-5 bg-white">
             <div className="modal-header flex items-center justify-between">
               <p className="font-semibold text-xl">Product Details</p>
               <button
@@ -263,7 +276,7 @@ const MerchantProductList = () => {
                   <p className="flex items-center gap-[6px] font-semibold text-lg">
                     <img
                       src={selectedProduct.category.photo}
-                      className="size-6 flex shrink-0"
+                      className="size-6 flex "
                       alt="icon"
                     />
                     {selectedProduct.name}

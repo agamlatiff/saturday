@@ -1,10 +1,16 @@
 import { Link } from "react-router-dom";
 import Sidebar from "../../components/Sidebar";
 import { useFetchUsers, useDeleteUser } from "../../hooks/useUsers";
-import { User } from "../../types/types";
 import UserProfileCard from "../../components/UserProfileCard";
 import React from "react";
 import SearchButton from "../../components/SearchButton";
+import { EllipsisVertical, Trash } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "../../../components/ui/dropdown-menu";
 
 const UserList = () => {
   const { data: users, isPending } = useFetchUsers();
@@ -62,7 +68,7 @@ const UserList = () => {
                 </p>
               </div>
               <Link to="/users/add" className="btn btn-primary font-semibold">
-                Add New
+                <p className="hidden sm:block">Add New</p>
                 <img
                   src="assets/images/icons/add-square-white.svg"
                   className="flex sixe-6 shrink-0"
@@ -79,8 +85,8 @@ const UserList = () => {
                 <div className="flex flex-col gap-5">
                   {users.map((user) => (
                     <React.Fragment key={user.id}>
-                      <div className="card flex items-center justify-between gap-6">
-                        <div className="flex items-center gap-3">
+                      <div className="card flex items-center justify-between gap-12">
+                        <div className="flex items-center gap-3 w-3/4">
                           <div className="flex size-[76px] rounded-full bg-monday-background items-center justify-center overflow-hidden">
                             <img
                               src={user.photo}
@@ -100,7 +106,7 @@ const UserList = () => {
                             </p>
                           </div>
                         </div>
-                        <div className="flex items-center gap-3 w-[226px] shrink-0">
+                        <div className=" items-center gap-3 w-[226px] shrink-0 hidden md:flex">
                           <div className="flex size-[54px] rounded-2xl bg-monday-gray-background items-center justify-center">
                             <img
                               src="assets/images/icons/user-octagon-grey.svg"
@@ -109,7 +115,7 @@ const UserList = () => {
                             />
                           </div>
                           <div className="flex flex-col gap-1">
-                            <p className="font-medium text-sm text-monday-gray">
+                            <p className="font-medium text-sm text-monday-gray ">
                               User Role:
                             </p>
                             <p className="font-semibold text-lg text-nowrap">
@@ -117,17 +123,59 @@ const UserList = () => {
                             </p>
                           </div>
                         </div>
-                        <Link
-                          to={`/users/edit/${user.id}`}
-                          className="btn btn-black min-w-[130px] font-semibold"
-                        >
-                          <img
-                            src="assets/images/icons/edit-white.svg"
-                            className="flex size-6 shrink-0"
-                            alt="icon"
-                          />
-                          Edit
-                        </Link>
+                        <div className="flex items-center gap-4">
+                          <DropdownMenu>
+                            <DropdownMenuTrigger className="xl:hidden flex items-center">
+                              <EllipsisVertical />
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent className="xl:hidden block">
+                              <DropdownMenuItem>
+                                <Link
+                                  to={`/users/edit/${user.id}`}
+                                  className="btn btn-black min-w-[130px] font-semibold"
+                                >
+                                  <img
+                                    src="assets/images/icons/edit-white.svg"
+                                    className="flex size-6 shrink-0"
+                                    alt="icon"
+                                  />
+                                  Edit
+                                </Link>
+                              </DropdownMenuItem>
+                              <DropdownMenuItem>
+                                <button
+                                  className="flex items-center gap-2 btn btn-black min-w-[130px] font-semibold bg-red-600 text-white"
+                                  onClick={() =>
+                                    handleDelete(user.id ?? undefined)
+                                  }
+                                >
+                                  <Trash className="size-6 text-white" />
+                                  Delete
+                                </button>
+                              </DropdownMenuItem>
+                            </DropdownMenuContent>
+                          </DropdownMenu>
+                          <div className=" items-center gap-2 hidden xl:flex">
+                            <Link
+                              to={`/users/edit/${user.id}`}
+                              className="btn btn-black min-w-[130px] font-semibold"
+                            >
+                              <img
+                                src="assets/images/icons/edit-white.svg"
+                                className="flex size-6 shrink-0"
+                                alt="icon"
+                              />
+                              Edit
+                            </Link>
+                            <button
+                              className="flex items-center gap-2 btn btn-black min-w-[130px] font-semibold bg-red-600 text-white"
+                              onClick={() => handleDelete(user.id ?? undefined)}
+                            >
+                              <Trash className="size-6 text-white" />
+                              Delete
+                            </button>
+                          </div>
+                        </div>
                       </div>
                       <hr className="border-monday-border last:hidden" />
                     </React.Fragment>

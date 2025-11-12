@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CategoryFormData, categorySchema } from "../../schemas/categorySchema";
 import { AxiosError } from "axios";
-import { ApiErrorResponse } from "../../types/types"; 
+import { ApiErrorResponse } from "../../types/types";
 import UserProfileCard from "../../components/UserProfileCard";
 import SearchButton from "../../components/SearchButton";
 
@@ -14,7 +14,6 @@ const EditCategory = () => {
   const { id } = useParams<{ id: string }>();
   const { data: category, isPending } = useFetchCategory(Number(id));
   const { mutate: updateCategory, isPending: isUpdating } = useUpdateCategory();
- 
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [imagePreview, setImagePreview] = useState(
@@ -38,9 +37,8 @@ const EditCategory = () => {
       setValue("name", category.name);
       setValue("tagline", category.tagline);
 
-       
       if (category.photo) {
-        setImagePreview(category.photo);  
+        setImagePreview(category.photo);
       }
     }
   }, [category, setValue]);
@@ -92,35 +90,14 @@ const EditCategory = () => {
                 Manage Categories
               </Link>
             </div>
-          <div className="flex items-center flex-nowrap gap-3">
-            <SearchButton />
-              <a href="#">
-                <div className="flex size-14 rounded-full bg-monday-gray-background items-center justify-center overflow-hidden">
-                  <img
-                    src="/assets/images/icons/notification-black.svg"
-                    className="size-6"
-                    alt="icon"
-                  />
-                </div>
-              </a>
-              <div className="relative w-fit">
-                <div className="flex size-14 rounded-full bg-monday-lime-green items-center justify-center overflow-hidden">
-                  <img
-                    src="/assets/images/icons/crown-black-fill.svg"
-                    className="size-6"
-                    alt="icon"
-                  />
-                </div>
-                <p className="absolute transform -translate-x-1/2 left-1/2 -bottom-2 rounded-[20px] py-1 px-2 bg-monday-black text-white w-fit font-extrabold text-[8px]">
-                  PRO
-                </p>
-              </div>
+            <div className="flex items-center flex-nowrap gap-3">
+              <SearchButton />
             </div>
           </div>
           <UserProfileCard />
         </div>
         <main className="flex flex-col gap-6 flex-1">
-          <div className="flex gap-6">
+          <div className="flex gap-6 flex-col lg:flex-row">
             <form
               onSubmit={handleSubmit(onSubmit)}
               className="flex flex-col w-full rounded-3xl p-[18px] gap-5 bg-white"
@@ -215,9 +192,7 @@ const EditCategory = () => {
               )}
 
               <div className="flex items-center justify-end gap-4">
-              <Link to={'/categories'}
-                  className="btn btn-red font-semibold"
-                >
+                <Link to={"/categories"} className="btn btn-red font-semibold">
                   Cancel
                 </Link>
                 <button type="submit" className="btn btn-primary font-semibold">
@@ -225,57 +200,66 @@ const EditCategory = () => {
                 </button>
               </div>
             </form>
-            <div className="flex flex-col w-[392px] shrink-0 h-fit rounded-3xl p-[18px] gap-3 bg-white">
-              <p className="font-semibold">Quick Guide to Add New Category</p>
+            <div className="flex flex-col h-fit rounded-3xl p-[18px] gap-3 bg-white">
+              <p className="font-semibold">Quick Guide to Edit Category</p>
               <ul className="flex flex-col gap-4">
                 <li className="flex gap-[6px]">
                   <img
                     src="/assets/images/icons/Checklist-green-circle.svg"
                     className="flex size-6 shrink-0"
-                    alt="icon"
+                    alt="check icon"
                   />
                   <p className="font-medium leading-[140%]">
-                    Ensure the Category Name is Relevant and Clear Lorem Ipsum
+                    Ensure the category name is relevant, clear, and accurately
+                    represents the products within it.
                   </p>
                 </li>
+
                 <li className="flex gap-[6px]">
                   <img
                     src="/assets/images/icons/Checklist-green-circle.svg"
                     className="flex size-6 shrink-0"
-                    alt="icon"
+                    alt="check icon"
                   />
                   <p className="font-medium leading-[140%]">
-                    Verify the Image is Appropriate and High-Quality Lorem Ipsum
+                    Verify that the selected image is appropriate, professional,
+                    and of high quality.
                   </p>
                 </li>
+
                 <li className="flex gap-[6px]">
                   <img
                     src="/assets/images/icons/Checklist-green-circle.svg"
                     className="flex size-6 shrink-0"
-                    alt="icon"
+                    alt="check icon"
                   />
                   <p className="font-medium leading-[140%]">
-                    Choose a User-Friendly and Clear Tagline Lorem Ipsum simply
+                    Choose a concise and user-friendly tagline that effectively
+                    describes the category.
                   </p>
                 </li>
+
                 <li className="flex gap-[6px]">
                   <img
                     src="/assets/images/icons/Checklist-green-circle.svg"
                     className="flex size-6 shrink-0"
-                    alt="icon"
+                    alt="check icon"
                   />
                   <p className="font-medium leading-[140%]">
-                    Check for Duplicates to Avoid Lorem Redundancy Lorem Ipsum
+                    Check for duplicate or overlapping categories to maintain
+                    clarity and avoid redundancy.
                   </p>
                 </li>
+
                 <li className="flex gap-[6px]">
                   <img
                     src="/assets/images/icons/Checklist-green-circle.svg"
                     className="flex size-6 shrink-0"
-                    alt="icon"
+                    alt="check icon"
                   />
                   <p className="font-medium leading-[140%]">
-                    Preview the Category Carefully
+                    Review and preview the category details thoroughly before
+                    finalizing.
                   </p>
                 </li>
               </ul>

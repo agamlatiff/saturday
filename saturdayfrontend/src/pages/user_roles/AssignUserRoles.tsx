@@ -35,7 +35,9 @@ const AssignUserRole = () => {
         >
           <div className="flex items-center gap-6 h-[92px] bg-white w-full rounded-3xl p-[18px]">
             <div className="flex flex-col gap-[6px] w-full">
-              <h1 className="font-bold text-2xl">Assign Role to User</h1>
+              <h1 className="font-bold text-xl md:text-2xl">
+                Assign Role to User
+              </h1>
               <Link
                 to={"/users"}
                 className="flex items-center gap-[6px] text-monday-gray font-semibold"
@@ -55,7 +57,7 @@ const AssignUserRole = () => {
           <UserProfileCard />
         </div>
         <main className="flex flex-col gap-6 flex-1">
-          <div className="flex gap-6">
+          <div className="flex gap-6 flex-col lg:flex-row">
             <div className="flex flex-col w-full h-fit rounded-3xl p-[18px] gap-5 bg-white">
               <h2 className="font-semibold text-xl capitalize">
                 Complete the form
@@ -145,7 +147,7 @@ const AssignUserRole = () => {
                 </button>
               </div>
             </div>
-            <div className="flex flex-col w-[392px] shrink-0 h-fit rounded-3xl p-[18px] gap-3 bg-white">
+            <div className="flex flex-col h-fit rounded-3xl p-[18px] gap-3 bg-white">
               <p className="font-semibold">
                 Quick Guide to Assign Role To User
               </p>
@@ -154,54 +156,59 @@ const AssignUserRole = () => {
                   <img
                     src="/assets/images/icons/Checklist-green-circle.svg"
                     className="flex size-6 shrink-0"
-                    alt="icon"
+                    alt="check icon"
                   />
                   <p className="font-medium leading-[140%]">
-                    Select an Available Username from the List lorem ipsum
-                    simply text
+                    Select the correct username from the list to ensure the role
+                    is assigned to the intended user.
                   </p>
                 </li>
+
                 <li className="flex gap-[6px]">
                   <img
                     src="/assets/images/icons/Checklist-green-circle.svg"
                     className="flex size-6 shrink-0"
-                    alt="icon"
+                    alt="check icon"
                   />
                   <p className="font-medium leading-[140%]">
-                    Select the Most Appropriate Role as Needed text lorem ipsum
-                    dummy
+                    Choose the most appropriate role based on the user’s
+                    responsibilities and access needs.
                   </p>
                 </li>
+
                 <li className="flex gap-[6px]">
                   <img
                     src="/assets/images/icons/Checklist-green-circle.svg"
                     className="flex size-6 shrink-0"
-                    alt="icon"
+                    alt="check icon"
                   />
                   <p className="font-medium leading-[140%]">
-                    Review All Details Carefully Before Creating dummy image
+                    Review all details and permissions carefully to prevent
+                    accidental over- or under-privileging.
                   </p>
                 </li>
+
                 <li className="flex gap-[6px]">
                   <img
                     src="/assets/images/icons/Checklist-green-circle.svg"
                     className="flex size-6 shrink-0"
-                    alt="icon"
+                    alt="check icon"
                   />
                   <p className="font-medium leading-[140%]">
-                    Make Sure Not to Assign the Wrong Role or Permissions text
-                    lorem si ipsum
+                    Avoid assigning duplicate or conflicting roles that could
+                    cause redundancy or access issues.
                   </p>
                 </li>
+
                 <li className="flex gap-[6px]">
                   <img
                     src="/assets/images/icons/Checklist-green-circle.svg"
                     className="flex size-6 shrink-0"
-                    alt="icon"
+                    alt="check icon"
                   />
                   <p className="font-medium leading-[140%]">
-                    Ensure the Role is Assigned to the Right Person color dot
-                    amet ipsum lorem
+                    Confirm the assignment and save changes only after verifying
+                    the user and role are correct.
                   </p>
                 </li>
               </ul>

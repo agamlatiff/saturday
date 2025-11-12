@@ -19,7 +19,7 @@ const Sidebar = () => {
   const userRoles = user?.roles || [];
 
   return (
-    <aside className="relative flex h-auto w-[280px] shrink-0 bg-white">
+    <aside className="relative h-auto w-[280px] shrink-0 bg-white hidden lg:flex">
       <div className="flex flex-col fixed top-0 w-[280px] shrink-0 h-screen pt-[30px] px-4 gap-[30px]">
         <div className="flex items-center gap-2 mx-auto">
           <img

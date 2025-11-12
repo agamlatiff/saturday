@@ -4,6 +4,13 @@ import { useFetchMerchants } from "../../hooks/useMerchants";
 import UserProfileCard from "../../components/UserProfileCard";
 import React from "react";
 import SearchButton from "../../components/SearchButton";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "../../../components/ui/dropdown-menu";
+import { EllipsisVertical } from "lucide-react";
 
 const MerchantList = () => {
   const { data: merchants, isPending, isError, error } = useFetchMerchants(); // ✅ Use `isPending`
@@ -21,7 +28,7 @@ const MerchantList = () => {
         >
           <div className="flex items-center gap-6 h-[92px] bg-white w-full rounded-3xl p-[18px]">
             <div className="flex flex-col gap-[6px] w-full">
-              <h1 className="font-bold text-2xl">Manage Merchants</h1>
+              <h1 className="font-bold sm:text-2xl text-xl">Manage Merchants</h1>
             </div>
             <div className="flex items-center flex-nowrap gap-3">
               <SearchButton />
@@ -57,7 +64,7 @@ const MerchantList = () => {
                 to={"/merchants/add"}
                 className="btn btn-primary font-semibold"
               >
-                Add New
+                <p className="hidden sm:block">Add New</p>
                 <img
                   src="/assets/images/icons/add-square-white.svg"
                   className="flex sixe-6 shrink-0"
@@ -102,35 +109,67 @@ const MerchantList = () => {
                             </p>
                           </div>
                         </div>
-                        <div className="flex items-center gap-2 min-w-[266px]">
+                        <div className=" items-center w-full justify-center hidden sm:flex gap-2">
                           <img
                             src="/assets/images/icons/bag-black.svg"
                             className="size-6 flex shrink-0"
                             alt="icon"
                           />
                           <p className="font-semibold text-lg text-nowrap">
-                            {merchant.products ? merchant.products.length : 0}{" "}
+                            {merchant.products ? merchant.products.length : 0}
+                            {"  "}
                             Products
                           </p>
                         </div>
+
                         <div className="flex items-center gap-4">
-                          <Link
-                            to={`/merchant-products/${merchant.id}`}
-                            className="btn btn-primary-opacity min-w-[130px] font-semibold"
-                          >
-                            Details
-                          </Link>
-                          <Link
-                            to={`/merchants/edit/${merchant.id}`}
-                            className="btn btn-black min-w-[130px] font-semibold"
-                          >
-                            <img
-                              src="/assets/images/icons/edit-white.svg"
-                              className="flex size-6 shrink-0"
-                              alt="icon"
-                            />
-                            Edit
-                          </Link>
+                          <DropdownMenu>
+                            <DropdownMenuTrigger className="xl:hidden flex items-center">
+                              <EllipsisVertical />
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent className="xl:hidden block">
+                              <DropdownMenuItem>
+                                <Link
+                                  to={`/merchant-products/${merchant.id}`}
+                                  className="btn btn-primary-opacity min-w-[130px] font-semibold"
+                                >
+                                  Details
+                                </Link>
+                              </DropdownMenuItem>
+                              <DropdownMenuItem>
+                                <Link
+                                  to={`/merchants/edit/${merchant.id}`}
+                                  className="btn btn-black min-w-[130px] font-semibold"
+                                >
+                                  <img
+                                    src="/assets/images/icons/edit-white.svg"
+                                    className="flex size-6 shrink-0"
+                                    alt="icon"
+                                  />
+                                  Edit
+                                </Link>
+                              </DropdownMenuItem>
+                            </DropdownMenuContent>
+                          </DropdownMenu>
+                          <div className=" items-center gap-2 hidden xl:flex">
+                            <Link
+                              to={`/merchant-products/${merchant.id}`}
+                              className="btn btn-primary-opacity min-w-[130px] font-semibold"
+                            >
+                              Details
+                            </Link>
+                            <Link
+                              to={`/merchants/edit/${merchant.id}`}
+                              className="btn btn-black min-w-[130px] font-semibold"
+                            >
+                              <img
+                                src="/assets/images/icons/edit-white.svg"
+                                className="flex size-6 shrink-0"
+                                alt="icon"
+                              />
+                              Edit
+                            </Link>
+                          </div>
                         </div>
                       </div>
                       <hr className="border-monday-border last:hidden" />

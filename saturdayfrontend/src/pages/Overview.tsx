@@ -37,12 +37,15 @@ const Overview = () => {
 
   return (
     <>
-      <div id="main-container" className="flex flex-1">
+      <div id="main-container" className="lg:flex flex-1">
         <Sidebar />
-        <div id="Content" className="flex flex-col flex-1 p-6 pt-0">
+        <div
+          id="Content"
+          className="flex flex-col flex-1 p-6 pt-0 overflow-hidden"
+        >
           <div
             id="Top-Bar"
-            className="flex items-center w-full gap-6 mt-[30px] mb-6"
+            className="flex items-center w-full gap-6 mt-[30px] mb-6  lg:flex-row"
           >
             <div className="flex items-center gap-6 h-[92px] bg-white w-full rounded-3xl p-[18px]">
               <div className="flex flex-col gap-[6px] w-full">
@@ -55,7 +58,7 @@ const Overview = () => {
             <UserProfileCard />
           </div>
           <main className="flex flex-col gap-6 flex-1">
-            <section className="grid grid-cols-3 gap-6">
+            <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div
                 id="Total-Revenue"
                 className="flex flex-col rounded-3xl p-[18px] gap-5 bg-white"
@@ -118,10 +121,9 @@ const Overview = () => {
               </div>
             </section>
             <div className="flex gap-6 flex-1">
-
               <section
                 id="Lastest-Transaction"
-                className="flex flex-col gap-5 flex-1 rounded-3xl p-[18px] bg-white"
+                className="flex flex-col gap-5 flex-1 rounded-3xl p-[18px] w-[300px] bg-white bg-"
               >
                 <h2 className="font-bold text-xl">Lastest Transaction</h2>
 
@@ -156,7 +158,7 @@ const Overview = () => {
                             className="size-6 flex shrink-0"
                             alt="icon"
                           />
-                          <p className="font-semibold text-lg text-nowrap">
+                          <p className="font-semibold sm:text-lg text-nowrap text-sm">
                             {tx.merchant.name}
                           </p>
                         </div>
@@ -185,7 +187,7 @@ const Overview = () => {
                           <div className="flex flex-col gap-5">
                             {tx.transaction_products.map((tp) => (
                               <div key={tp.id}>
-                                <div className="card flex items-center justify-between gap-3">
+                                <div className="card flex items-center justify-between gap-3 ">
                                   <div className="flex items-center gap-3 w-full">
                                     <div className="flex size-[86px] rounded-2xl bg-monday-background items-center justify-center overflow-hidden">
                                       <img
@@ -207,7 +209,7 @@ const Overview = () => {
                                       </p>
                                     </div>
                                   </div>
-                                  <div className="flex items-center gap-[6px] w-full">
+                                  <div className=" items-center gap-[6px] w-full  hidden sm:flex">
                                     <img
                                       src="assets/images/icons/Makeup-black.svg"
                                       className="size-6 flex shrink-0"
@@ -222,7 +224,7 @@ const Overview = () => {
                                     onClick={() => {
                                       setSelectedProductId(tp.product.id);
                                     }}
-                                    className="btn btn-primary-opacity min-w-[130px] font-semibold"
+                                    className="btn btn-primary-opacity min-w-[100px] sm:min-w-[130px] font-semibold"
                                   >
                                     Details
                                   </button>

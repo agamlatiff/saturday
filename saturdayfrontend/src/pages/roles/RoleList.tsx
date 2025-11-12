@@ -53,7 +53,7 @@ const RoleList = () => {
                 </p>
               </div>
               <Link to="/roles/add" className="btn btn-primary font-semibold">
-                Add New
+                <p className="hidden sm:block">Add New</p>{" "}
                 <img
                   src="assets/images/icons/add-square-white.svg"
                   className="flex sixe-6 shrink-0"
@@ -83,7 +83,7 @@ const RoleList = () => {
                             <p className="font-semibold text-xl">{role.name}</p>
                           </div>
                         </div>
-                        <div className="flex items-center gap-2 w-full">
+                        {/* <div className="flex items-center gap-2 w-full">
                           <img
                             src="assets/images/icons/profile-2user-black.svg"
                             className="size-6 flex shrink-0"
@@ -92,7 +92,7 @@ const RoleList = () => {
                           <p className="font-semibold text-lg text-nowrap">
                             {role.users_web_count} Total User
                           </p>
-                        </div>
+                        </div> */}
                         <Link
                           to={`/roles/edit/${role.id}`}
                           className="btn btn-black min-w-[130px] font-semibold"

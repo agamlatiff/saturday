@@ -58,27 +58,6 @@ const OverviewMerchant = () => {
               </div>
               <div className="flex items-center flex-nowrap gap-3">
                 <SearchButton />
-                <a href="#">
-                  <div className="flex size-14 rounded-full bg-monday-gray-background items-center justify-center overflow-hidden">
-                    <img
-                      src="assets/images/icons/notification-black.svg"
-                      className="size-6"
-                      alt="icon"
-                    />
-                  </div>
-                </a>
-                <div className="relative w-fit">
-                  <div className="flex size-14 rounded-full bg-monday-lime-green items-center justify-center overflow-hidden">
-                    <img
-                      src="assets/images/icons/crown-black-fill.svg"
-                      className="size-6"
-                      alt="icon"
-                    />
-                  </div>
-                  <p className="absolute transform -translate-x-1/2 left-1/2 -bottom-2 rounded-[20px] py-1 px-2 bg-monday-black text-white w-fit font-extrabold text-[8px]">
-                    PRO
-                  </p>
-                </div>
               </div>
             </div>
             <UserProfileCard />

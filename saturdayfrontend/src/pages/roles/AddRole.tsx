@@ -74,33 +74,12 @@ const AddRole = () => {
             </div>
             <div className="flex items-center flex-nowrap gap-3">
               <SearchButton />
-              <a href="#">
-                <div className="flex size-14 rounded-full bg-monday-gray-background items-center justify-center overflow-hidden">
-                  <img
-                    src="/assets/images/icons/notification-black.svg"
-                    className="size-6"
-                    alt="icon"
-                  />
-                </div>
-              </a>
-              <div className="relative w-fit">
-                <div className="flex size-14 rounded-full bg-monday-lime-green items-center justify-center overflow-hidden">
-                  <img
-                    src="/assets/images/icons/crown-black-fill.svg"
-                    className="size-6"
-                    alt="icon"
-                  />
-                </div>
-                <p className="absolute transform -translate-x-1/2 left-1/2 -bottom-2 rounded-[20px] py-1 px-2 bg-monday-black text-white w-fit font-extrabold text-[8px]">
-                  PRO
-                </p>
-              </div>
             </div>
           </div>
           <UserProfileCard />
         </div>
         <main className="flex flex-col gap-6 flex-1">
-          <div className="flex gap-6">
+          <div className="flex gap-6 flex-col md:flex-row">
             <form
               onSubmit={handleSubmit(onSubmit)}
               className="flex flex-col w-full h-fit rounded-3xl p-[18px] gap-5 bg-white"
@@ -139,18 +118,18 @@ const AddRole = () => {
                 </button>
               </div>
             </form>
-            <div className="flex flex-col w-[392px] shrink-0 h-fit rounded-3xl p-[18px] gap-3 bg-white">
+            <div className="flex flex-col w-full h-fit rounded-3xl p-[18px] gap-3 bg-white">
               <p className="font-semibold">Quick Guide to Add New Role</p>
               <ul className="flex flex-col gap-4">
                 <li className="flex gap-[6px]">
                   <img
                     src="/assets/images/icons/Checklist-green-circle.svg"
                     className="flex size-6 shrink-0"
-                    alt="checklist icon"
+                    alt="check icon"
                   />
                   <p className="font-medium leading-[140%]">
                     Clearly define role responsibilities to maintain
-                    accountability and clarity
+                    accountability and clarity.
                   </p>
                 </li>
 
@@ -158,11 +137,11 @@ const AddRole = () => {
                   <img
                     src="/assets/images/icons/Checklist-green-circle.svg"
                     className="flex size-6 shrink-0"
-                    alt="checklist icon"
+                    alt="check icon"
                   />
                   <p className="font-medium leading-[140%]">
-                    Assign appropriate permissions — give users only the access
-                    needed for their role
+                    Assign appropriate permissions — grant users only the access
+                    necessary for their assigned role.
                   </p>
                 </li>
 
@@ -170,10 +149,11 @@ const AddRole = () => {
                   <img
                     src="/assets/images/icons/Checklist-green-circle.svg"
                     className="flex size-6 shrink-0"
-                    alt="checklist icon"
+                    alt="check icon"
                   />
                   <p className="font-medium leading-[140%]">
-                    Check for duplicate roles to avoid redundancy and confusion
+                    Check for duplicate roles to avoid redundancy and maintain
+                    clarity in system management.
                   </p>
                 </li>
 
@@ -181,11 +161,11 @@ const AddRole = () => {
                   <img
                     src="/assets/images/icons/Checklist-green-circle.svg"
                     className="flex size-6 shrink-0"
-                    alt="checklist icon"
+                    alt="check icon"
                   />
                   <p className="font-medium leading-[140%]">
-                    Use clear, concise, and consistent naming for easy
-                    identification
+                    Use clear, concise, and consistent naming conventions for
+                    easier identification.
                   </p>
                 </li>
 
@@ -193,11 +173,11 @@ const AddRole = () => {
                   <img
                     src="/assets/images/icons/Checklist-green-circle.svg"
                     className="flex size-6 shrink-0"
-                    alt="checklist icon"
+                    alt="check icon"
                   />
                   <p className="font-medium leading-[140%]">
-                    Review all details and permissions before saving the new
-                    role
+                    Review all role details and assigned permissions carefully
+                    before saving the new role.
                   </p>
                 </li>
               </ul>

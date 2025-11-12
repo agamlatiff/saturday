@@ -4,6 +4,8 @@ import { useFetchCategories } from "../../hooks/useCategories";
 import React from "react";
 import UserProfileCard from "../../components/UserProfileCard";
 import SearchButton from "../../components/SearchButton";
+import { EllipsisVertical } from "lucide-react";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../../../components/ui/dropdown-menu";
 
 const CategoryList = () => {
   const { data: categories, isPending, isError, error } = useFetchCategories();
@@ -17,14 +19,14 @@ const CategoryList = () => {
   return (
     <div id="main-container" className="flex flex-1">
       <Sidebar />
-      <div id="Content" className="flex flex-col flex-1 p-6 pt-0">
+      <div id="Content" className="flex flex-col flex-1 p-6 pt-0 pr-10">
         <div
           id="Top-Bar"
           className="flex items-center w-full gap-6 mt-[30px] mb-6"
         >
           <div className="flex items-center gap-6 h-[92px] bg-white w-full rounded-3xl p-[18px]">
             <div className="flex flex-col gap-[6px] w-full">
-              <h1 className="font-bold text-2xl">Manage Categories</h1>
+              <h1 className="font-bold sm:text-2xl text-xl">Manage Categories</h1>
             </div>
             <div className="flex items-center flex-nowrap gap-3">
               <SearchButton />
@@ -32,16 +34,16 @@ const CategoryList = () => {
           </div>
           <UserProfileCard />
         </div>
-        <main className="flex flex-col gap-6 flex-1">
+        <main className="flex flex-col gap-6 flex-1 w-full ">
           <section
             id="Products"
-            className="flex flex-col gap-6 flex-1 rounded-3xl p-[18px] px-0 bg-white"
+            className="flex flex-col gap-6 flex-1 rounded-3xl p-[18px] px-0 bg-white w-full"
           >
             <div
               id="Header"
-              className="flex items-center justify-between px-[18px]"
+              className="flex items-center justify-between px-[18px] "
             >
-              <div className="flex flex-col gap-[6px]">
+              <div className="flex flex-col gap-[6px] ">
                 <p className="flex items-center gap-[6px]">
                   <img
                     src="assets/images/icons/note-2-black.svg"
@@ -60,7 +62,7 @@ const CategoryList = () => {
                 to="/categories/add"
                 className="btn btn-primary font-semibold"
               >
-                Add New
+                <p className="hidden sm:block"> Add New</p>
                 <img
                   src="assets/images/icons/add-square-white.svg"
                   className="flex sixe-6 shrink-0"
@@ -87,7 +89,7 @@ const CategoryList = () => {
                               alt="icon"
                             />
                           </div>
-                          <div className="flex flex-col gap-2 flex-1">
+                          <div className="flex flex-col gap-2 flex-1 flex-wrap">
                             <p className="font-semibold text-xl w-[297px] truncate">
                               {category.name}
                             </p>
@@ -96,27 +98,52 @@ const CategoryList = () => {
                             </p>
                           </div>
                         </div>
-                        <div className="flex items-center gap-2 w-full">
+                        <div className=" items-center gap-2 w-full justify-center hidden sm:flex">
                           <img
                             src="assets/images/icons/bag-black.svg"
                             className="size-6 flex shrink-0"
                             alt="icon"
                           />
-                          <p className="font-semibold text-lg text-nowrap">
-                            {category.products?.length || 0} Products
+                          <p className="font-semibold text-lg text-nowrap ">
+                          {category.products?.length || 0} Products
                           </p>
                         </div>
-                        <Link
-                          to={`/categories/edit/${category.id}`}
-                          className="btn btn-black min-w-[130px] font-semibold"
-                        >
-                          <img
-                            src="assets/images/icons/edit-white.svg"
-                            className="flex size-6 shrink-0"
-                            alt="icon"
-                          />
-                          Edit
-                        </Link>
+                        <div className="flex items-center gap-4">
+                          <DropdownMenu>
+                            <DropdownMenuTrigger className="xl:hidden flex items-center">
+                              <EllipsisVertical />
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent className="xl:hidden block">           
+                              <DropdownMenuItem>
+                                {" "}
+                                <Link
+                                  to={`/categories/edit/${category.id}`}
+                                  className="btn btn-black min-w-[130px] font-semibold"
+                                >
+                                  <img
+                                    src="assets/images/icons/edit-white.svg"
+                                    className="flex size-6 shrink-0"
+                                    alt="icon"
+                                  />
+                                  Edit
+                                </Link>
+                              </DropdownMenuItem>
+                            </DropdownMenuContent>
+                          </DropdownMenu>
+                          <div className=" items-center gap-2 hidden xl:flex">
+                            <Link
+                              to={`/categories/edit/${category.id}`}
+                              className="btn btn-black min-w-[130px] font-semibold"
+                            >
+                              <img
+                                src="assets/images/icons/edit-white.svg"
+                                className="flex size-6 shrink-0"
+                                alt="icon"
+                              />
+                              Edit
+                            </Link>
+                          </div>
+                        </div>
                       </div>
 
                       <hr className="border-monday-border last:hidden" />
