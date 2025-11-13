@@ -1,15 +1,3 @@
-Exploring the codebase to understand the project:
-
-
-[5 tools called]
-
-
-Exploring the codebase structure to understand the project's functionality:
-
-
-[6 tools called]
-
-
 ## **Saturday - Warehouse & Merchant Management System**
 
 ### **Overview**
