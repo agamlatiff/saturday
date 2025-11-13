@@ -27,7 +27,7 @@ const Login = () => {
 
   return (
     <main className="flex flex-1 h-screen items-center">
-      <div className="flex flex-col h-screen overflow-hidden rounded-tr-[32px] pl-[30px] pt-[46px] w-[685px] shrink-0 blue-gradient">
+      <div className=" flex-col h-screen overflow-hidden rounded-tr-[32px] pl-[30px] pt-[46px] w-[685px] shrink-0 blue-gradient hidden xl:flex">
         <p className="font-semibold text-lg text-monday-lime-green-char">
           — Warehouse & Merchant Management
         </p>
@@ -51,10 +51,10 @@ const Login = () => {
         >
           <div className="flex items-center gap-2 mx-auto">
             <img
-            src="/assets/images/logos/warehouse.png"
-            className="w-[50px] mx-auto"
-            alt="logo"
-          />
+              src="/assets/images/logos/warehouse.png"
+              className="w-[50px] mx-auto"
+              alt="logo"
+            />
             <h1 className="font-bold text-3xl">Saturday</h1>
           </div>
 
@@ -160,7 +160,7 @@ const Login = () => {
               </p>
             </div>
             <button type="submit" className="btn btn-primary w-full font-bold">
-              Sign In
+              {loading ? "Logging in..." : "Login"}
             </button>
             {error && <p style={{ color: "red" }}>{error}</p>}
           </div>

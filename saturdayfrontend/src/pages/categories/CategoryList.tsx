@@ -153,7 +153,7 @@ const CategoryList = () => {
               ) : (
                 <div
                   id="Empty-State"
-                  className="flex flex-col flex-1 items-center justify-center rounded-[20px] border-dashed border-2 border-monday-gray gap-6"
+                  className="py-20 flex flex-col flex-1 items-center justify-center rounded-[20px] border-dashed border-2 border-monday-gray gap-6"
                 >
                   <img
                     src="assets/images/icons/document-text-grey.svg"

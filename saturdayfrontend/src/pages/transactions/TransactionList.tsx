@@ -32,16 +32,21 @@ const TransactionList = () => {
 
   return (
     <>
-      <div id="main-container" className="flex flex-1">
+      <div id="main-container" className="lg:flex flex-1">
         <Sidebar />
-        <div id="Content" className="flex flex-col flex-1 p-6 pt-0">
+        <div
+          id="Content"
+          className="flex flex-col flex-1 p-6 pt-0 overflow-hidden"
+        >
           <div
             id="Top-Bar"
-            className="flex items-center w-full gap-6 mt-[30px] mb-6"
+            className="flex items-center w-full gap-6 mt-[30px] mb-6 lg:flex-row"
           >
             <div className="flex items-center gap-6 h-[92px] bg-white w-full rounded-3xl p-[18px]">
               <div className="flex flex-col gap-[6px] w-full">
-                <h1 className="font-bold text-2xl">Manage Transactions</h1>
+                <h1 className="font-bold text-lg sm:text-2xl">
+                  Manage Transactions
+                </h1>
               </div>
               <div className="flex items-center flex-nowrap gap-3">
                 <SearchButton />
@@ -52,11 +57,11 @@ const TransactionList = () => {
           <main className="flex flex-col gap-6 flex-1">
             <section
               id="Warehouse-Info"
-              className="flex items-center justify-between rounded-3xl p-[18px] gap-3 bg-white"
+              className="flex items-center justify-between rounded-3xl p-[18px] gap-3 bg-white flex-row"
             >
               <div className="flex size-16 rounded-2xl bg-monday-background items-center justify-center overflow-hidden">
                 <img
-                  src={merchant?.photo}
+                  src={merchant?.photo ?? "assets/images/icons/user-thin-grey.svg"}
                   className="size-full object-contain"
                   alt="icon"
                 />
@@ -111,9 +116,9 @@ const TransactionList = () => {
                 </div>
                 <Link
                   to={"/transactions/add"}
-                  className="btn btn-primary font-semibold"
+                  className="btn btn-primary font-semibold w-auto"
                 >
-                  Add New
+                  <p className="hidden sm:block">Add New</p>
                   <img
                     src="assets/images/icons/add-square-white.svg"
                     className="flex sixe-6 shrink-0"
@@ -131,30 +136,28 @@ const TransactionList = () => {
                 </div>
                 {transactions.length > 0 ? (
                   transactions.map((tx) => (
-                    <div className="card-merchant flex flex-col rounded-2xl border border-monday-border">
-                      <div className="flex flex-col gap-5 p-4 pb-5">
-                        <p className="font-semibold text-lg">
-                          Customer Details
-                        </p>
-                        <div className="flex items-center justify-between gap-3">
-                          <div className="flex size-[86px] rounded-2xl bg-monday-background items-center justify-center overflow-hidden">
+                    <div
+                      key={tx.id}
+                      className="card-merchant flex flex-col rounded-2xl border border-monday-border"
+                    >
+                      <div className="flex items-center justify-between p-4 gap-3 pb-5">
+                        <div className="flex size-[86px] rounded-2xl bg-monday-background items-center justify-center overflow-hidden">
+                          <img
+                            src="assets/images/icons/user-thin-grey.svg"
+                            className="flex size-[42px] shrink-0"
+                            alt="icon"
+                          />
+                        </div>
+                        <div className="flex flex-col gap-2 flex-1">
+                          <p className="font-semibold text-xl">{tx.name}</p>
+                          <p className="flex items-center gap-1 font-medium text-lg text-monday-gray">
                             <img
-                              src="assets/images/icons/user-thin-grey.svg"
-                              className="flex size-[42px] shrink-0"
+                              src="assets/images/icons/call-grey.svg"
+                              className="size-6 flex shrink-0"
                               alt="icon"
                             />
-                          </div>
-                          <div className="flex flex-col gap-2 flex-1">
-                            <p className="font-semibold text-xl">{tx.name}</p>
-                            <p className="flex items-center gap-1 font-medium text-lg text-monday-gray">
-                              <img
-                                src="assets/images/icons/call-grey.svg"
-                                className="size-6 flex shrink-0"
-                                alt="icon"
-                              />
-                              <span>{tx.phone}</span>
-                            </p>
-                          </div>
+                            <span>{tx.phone}</span>
+                          </p>
                         </div>
                       </div>
                       <hr className="border-monday-border" />
@@ -184,7 +187,7 @@ const TransactionList = () => {
                             {tx.transaction_products.map((tp) => (
                               <React.Fragment key={tp.id}>
                                 <div className="card flex items-center justify-between gap-3">
-                                  <div className="flex items-center gap-3 w-[420px] shrink-0">
+                                  <div className="flex items-center gap-3 w-full">
                                     <div className="flex size-[86px] rounded-2xl bg-monday-background items-center justify-center overflow-hidden">
                                       <img
                                         src={tp.product.thumbnail}
@@ -193,20 +196,20 @@ const TransactionList = () => {
                                       />
                                     </div>
                                     <div className="flex flex-col gap-2 flex-1">
-                                      <p className="font-semibold text-xl">
+                                      <p className="font-semibold text-xl line-clamp-1">
                                         {tp.product.name}
                                       </p>
                                       <p className="font-semibold text-xl text-monday-blue">
                                         Rp {tp.price.toLocaleString("id")}
                                         <span className="text-monday-gray">
-                                          (2x)
+                                          ({tp.quantity.toLocaleString("id")}x)
                                         </span>
                                       </p>
                                     </div>
                                   </div>
-                                  <div className="flex items-center gap-[6px] w-full justify-center">
+                                  <div className="hidden sm:flex items-center gap-[6px] w-full">
                                     <img
-                                      src={tp.product.category.photo}
+                                      src="assets/images/icons/Makeup-black.svg"
                                       className="size-6 flex shrink-0"
                                       alt="icon"
                                     />
@@ -218,7 +221,7 @@ const TransactionList = () => {
                                     onClick={() => {
                                       setSelectedProductId(tp.product.id);
                                     }}
-                                    className="btn btn-primary-opacity min-w-[130px] font-semibold"
+                                    className="btn btn-primary-opacity min-w-[100px] sm:min-w-[130px] font-semibold"
                                   >
                                     Details
                                   </button>
@@ -248,7 +251,7 @@ const TransactionList = () => {
                 ) : (
                   <div
                     id="Empty-State"
-                    className="hidden flex flex-col flex-1 items-center justify-center rounded-[20px] border-dashed border-2 border-monday-gray gap-6"
+                    className="py-20  flex flex-col flex-1 items-center justify-center rounded-[20px] border-dashed border-2 border-monday-gray gap-6"
                   >
                     <img
                       src="assets/images/icons/document-text-grey.svg"
@@ -271,7 +274,7 @@ const TransactionList = () => {
             onClick={() => setSelectedProductId(null)}
             className="absolute w-full h-full bg-[#292D32B2] cursor-pointer"
           />
-          <div className="relative flex flex-col w-[406px] shrink-0 rounded-3xl p-[18px] gap-5 bg-white">
+          <div className="relative flex flex-col w-full max-w-[406px] shrink-0 rounded-3xl p-[18px] gap-5 bg-white mx-4">
             <div className="modal-header flex items-center justify-between">
               <p className="font-semibold text-xl">Product Details</p>
               <button

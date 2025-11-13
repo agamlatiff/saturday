@@ -58,7 +58,7 @@ const WarehouseProductList = () => {
           <main className="flex flex-col gap-6 flex-1">
             <section
               id="Warehouse-Info"
-              className="flex items-center justify-between rounded-3xl p-[18px] gap-3 bg-white"
+              className="flex items-center justify-between rounded-3xl p-[18px] gap-3 bg-white flex-row"
             >
               <div className="flex size-16 rounded-2xl bg-monday-background items-center justify-center overflow-hidden">
                 <img
@@ -217,7 +217,7 @@ const WarehouseProductList = () => {
                 ) : (
                   <div
                     id="Empty-State"
-                    className="flex flex-col flex-1 items-center justify-center rounded-[20px] border-dashed border-2 border-monday-gray gap-6"
+                    className="py-20 flex flex-col flex-1 items-center justify-center rounded-[20px] border-dashed border-2 border-monday-gray gap-6"
                   >
                     <img
                       src="/assets/images/icons/document-text-grey.svg"

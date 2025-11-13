@@ -115,7 +115,7 @@ class TransactionService
         $this->merchantProductRepository->updateStock($data["merchant_id"], $productData["product_id"], $newStock);
 
       };
-      $taxTotal = $subTotal * 0.1;
+      $taxTotal = $subTotal * 0.12;
       $grandTotal = $subTotal + $taxTotal;
 
       //  Create transaction

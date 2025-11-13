@@ -86,8 +86,8 @@ const Register = () => {
   };
 
   return (
-    <main className="flex flex-1 h-screen items-center">
-      <div className="flex flex-col h-screen overflow-hidden rounded-tr-[32px] pl-[30px] pt-[46px] w-[685px] shrink-0 blue-gradient">
+    <main className="flex flex-1 h-screen items-center ">
+      <div className="hidden xl:flex flex-col h-screen overflow-hidden rounded-tr-[32px] pl-[30px] pt-[46px] w-[685px] shrink-0 blue-gradient">
         <p className="font-semibold text-lg text-monday-lime-green-char">
           — Warehouse & Merchant Management
         </p>
@@ -121,7 +121,7 @@ const Register = () => {
             <div className="flex flex-col gap-3 text-center">
               <p className="font-semibold text-2xl">Create Your Account</p>
               <p className="font-medium text-monday-gray">
-                Sign up to get started with your account!
+                Register to get started with your account!
               </p>
             </div>
             <div className="flex flex-col gap-4 w-full">
@@ -372,7 +372,7 @@ const Register = () => {
                   to="/login"
                   className="font-semibold text-monday-blue hover:underline"
                 >
-                  Sign In
+                  Login
                 </Link>
               </p>
             </div>

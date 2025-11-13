@@ -23,7 +23,7 @@ export const useCreateTransaction = () => {
 
       // 🧠 Calculate all values before clearing
       const subTotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-      const taxTotal = subTotal * 0.1;
+      const taxTotal = subTotal * 0.12;
       const grandTotal = subTotal + taxTotal;
       const totalItems = cart.length;
       const totalQuantity = cart.reduce((sum, p) => sum + p.quantity, 0);

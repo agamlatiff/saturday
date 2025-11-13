@@ -45,12 +45,12 @@ const OverviewMerchant = () => {
 
   return (
     <>
-      <div id="main-container" className="flex flex-1">
+      <div id="main-container" className="lg:flex flex-1">
         <Sidebar />
-        <div id="Content" className="flex flex-col flex-1 p-6 pt-0">
+        <div id="Content" className="flex flex-col flex-1 p-6 pt-0 overflow-hidden">
           <div
             id="Top-Bar"
-            className="flex items-center w-full gap-6 mt-[30px] mb-6"
+            className="flex items-center w-full gap-6 mt-[30px] mb-6 lg:flex-row"
           >
             <div className="flex items-center gap-6 h-[92px] bg-white w-full rounded-3xl p-[18px]">
               <div className="flex flex-col gap-[6px] w-full">
@@ -63,7 +63,7 @@ const OverviewMerchant = () => {
             <UserProfileCard />
           </div>
           <main className="flex flex-col gap-6 flex-1">
-            <section className="grid grid-cols-3 gap-6">
+            <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div
                 id="Total-Revenue"
                 className="flex flex-col rounded-3xl p-[18px] gap-5 bg-white"
@@ -162,7 +162,7 @@ const OverviewMerchant = () => {
                           className="size-6 flex shrink-0"
                           alt="icon"
                         />
-                        <p className="font-semibold text-lg text-nowrap">
+                        <p className="font-semibold sm:text-lg text-sm text-nowrap">
                           {tx.merchant.name}
                         </p>
                       </div>
@@ -208,14 +208,14 @@ const OverviewMerchant = () => {
                                       {tp.product.name}
                                     </p>
                                     <p className="font-semibold text-xl text-monday-blue">
-                                      Rp {tp.product.price.toLocaleString("id")}
+                                      Rp {tp.price.toLocaleString("id")}
                                       <span className="text-monday-gray">
-                                        (2x)
+                                        ({tp.quantity.toLocaleString("id")}x)
                                       </span>
                                     </p>
                                   </div>
                                 </div>
-                                <div className="flex items-center gap-[6px] w-full">
+                                <div className="hidden sm:flex items-center gap-[6px] w-full">
                                   <img
                                     src="assets/images/icons/Makeup-black.svg"
                                     className="size-6 flex shrink-0"
@@ -229,7 +229,7 @@ const OverviewMerchant = () => {
                                   onClick={() => {
                                     setSelectedProductId(tp.product.id);
                                   }}
-                                  className="btn btn-primary-opacity min-w-[130px] font-semibold"
+                                  className="btn btn-primary-opacity min-w-[100px] sm:min-w-[130px] font-semibold"
                                 >
                                   Details
                                 </button>
@@ -259,7 +259,7 @@ const OverviewMerchant = () => {
               ) : (
                 <div
                   id="Empty-State"
-                  className=" flex flex-col flex-1 items-center justify-center rounded-[20px] border-dashed border-2 border-monday-gray gap-6"
+                  className="py-20 flex flex-col flex-1 items-center justify-center rounded-[20px] border-dashed border-2 border-monday-gray gap-6"
                 >
                   <img
                     src="assets/images/icons/document-text-grey.svg"
@@ -281,7 +281,7 @@ const OverviewMerchant = () => {
             onClick={() => setSelectedProductId(null)}
             className="absolute w-full h-full bg-[#292D32B2] cursor-pointer"
           />
-          <div className="relative flex flex-col w-[406px] shrink-0 rounded-3xl p-[18px] gap-5 bg-white">
+          <div className="relative flex flex-col w-full max-w-[406px] shrink-0 rounded-3xl p-[18px] gap-5 bg-white mx-4">
             <div className="modal-header flex items-center justify-between">
               <p className="font-semibold text-xl">Product Details</p>
               <button

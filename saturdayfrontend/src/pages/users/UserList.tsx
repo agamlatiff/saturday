@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import Sidebar from "../../components/Sidebar";
 import { useFetchUsers, useDeleteUser } from "../../hooks/useUsers";
 import UserProfileCard from "../../components/UserProfileCard";
-import React from "react";
+import React, { useState } from "react";
 import SearchButton from "../../components/SearchButton";
 import { EllipsisVertical, Trash } from "lucide-react";
 import {
@@ -11,14 +11,24 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../../../components/ui/dropdown-menu";
+import PopupDeleteAccount from "../../components/PopupDeleteAccount";
 
 const UserList = () => {
   const { data: users, isPending } = useFetchUsers();
-  const { mutate: deleteUser } = useDeleteUser();
+  const { mutate: deleteUser, isPending: isDeleting } = useDeleteUser();
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [selectedUserId, setSelectedUserId] = useState<number | null>(null);
 
   const handleDelete = (id: number) => {
-    if (window.confirm("Are you sure you want to delete this user?")) {
-      deleteUser(id);
+    setSelectedUserId(id);
+    setShowDeleteModal(true);
+  };
+
+  const confirmDeleteUser = () => {
+    if (selectedUserId) {
+      deleteUser(selectedUserId);
+      setShowDeleteModal(false);
+      setSelectedUserId(null);
     }
   };
 
@@ -184,7 +194,7 @@ const UserList = () => {
               ) : (
                 <div
                   id="Empty-State"
-                  className="hidden flex flex-col flex-1 items-center justify-center rounded-[20px] border-dashed border-2 border-monday-gray gap-6"
+                  className="py-20  flex flex-col flex-1 items-center justify-center rounded-[20px] border-dashed border-2 border-monday-gray gap-6"
                 >
                   <img
                     src="assets/images/icons/document-text-grey.svg"
@@ -200,6 +210,27 @@ const UserList = () => {
           </section>
         </main>
       </div>
+
+      {/* Delete User Confirmation Modal */}
+      <PopupDeleteAccount
+        isOpen={showDeleteModal}
+        onClose={() => {
+          setShowDeleteModal(false);
+          setSelectedUserId(null);
+        }}
+        onConfirm={confirmDeleteUser}
+        isDeleting={isDeleting}
+        title="Delete User"
+        warningTitle="Warning: This action cannot be undone"
+        warningMessage="This user's data will be permanently deleted"
+        description="Are you sure you want to delete this user? This will:"
+        items={[
+          "Permanently delete the user's profile and all associated data",
+          "Remove all user's transactions and history",
+          "This action cannot be reversed",
+        ]}
+        confirmButtonText="Yes, Delete User"
+      />
     </div>
   );
 };

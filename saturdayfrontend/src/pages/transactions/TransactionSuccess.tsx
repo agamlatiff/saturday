@@ -85,7 +85,7 @@ const TransactionSuccess = () => {
               className="size-6 flex shrink-0"
               alt="icon"
             />
-            <span>PPN 10%</span>
+            <span>PPN 12%</span>
           </p>
           <p className="font-semibold text-lg">Rp {taxTotal.toLocaleString('id')}</p>
         </div>

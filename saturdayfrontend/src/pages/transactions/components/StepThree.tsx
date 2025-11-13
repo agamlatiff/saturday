@@ -11,7 +11,7 @@ const StepThree = ({ handlePrevStep }: { handlePrevStep: () => void }) => {
     (sum, item) => sum + item.price * item.quantity,
     0
   );
-  const tax = subtotal * 0.1;
+  const tax = subtotal * 0.12;
   const grandTotal = subtotal + tax;
 
   const onSubmit = () => {
@@ -37,15 +37,15 @@ const StepThree = ({ handlePrevStep }: { handlePrevStep: () => void }) => {
       id="Products"
       className="flex flex-col gap-6 rounded-3xl p-[18px] px-0"
     >
-      <div className="flex gap-6">
+      <div className="flex flex-col lg:flex-row gap-6">
         <div className="flex flex-col w-full h-fit rounded-3xl p-[18px] gap-5 bg-white">
           <p className="font-semibold text-xl">Review Transaction</p>
 
           {cart.length > 0 ? (
-            cart.map((product) => (
-              <div className="card flex flex-col w-full rounded-3xl border border-monday-border p-4 gap-5">
-                <div className="flex items-center justify-between gap-6">
-                  <div className="flex items-center gap-3 w-[316px] shrink-0">
+            cart.map((product, index) => (
+              <div key={index} className="card flex flex-col w-full rounded-3xl border border-monday-border p-4 gap-5">
+                <div className="flex items-center justify-between gap-6 flex-col sm:flex-row">
+                  <div className="flex items-center gap-3 w-full sm:w-[316px] shrink-0">
                     <div className="flex size-[86px] rounded-2xl bg-monday-background items-center justify-center overflow-hidden">
                       <img
                         src={product.thumbnail}
@@ -65,7 +65,7 @@ const StepThree = ({ handlePrevStep }: { handlePrevStep: () => void }) => {
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-[6px] w-fit shrink-0">
+                  <div className="hidden sm:flex items-center gap-[6px] w-fit shrink-0">
                     <img
                       src="/assets/images/icons/Makeup-black.svg"
                       className="size-6 flex shrink-0"
@@ -97,7 +97,7 @@ const StepThree = ({ handlePrevStep }: { handlePrevStep: () => void }) => {
           )}
         </div>
         <div className="flex flex-col gap-6 w-full">
-          <div className="flex w-full h-fit rounded-3xl p-[18px] gap-3 bg-white">
+          <div className="flex w-full h-fit rounded-3xl p-[18px] gap-3 bg-white flex-col sm:flex-row">
             <div className="flex size-16 rounded-2xl bg-monday-background items-center justify-center overflow-hidden">
               <img
                 src={merchant.photo}
@@ -153,7 +153,7 @@ const StepThree = ({ handlePrevStep }: { handlePrevStep: () => void }) => {
                     />
                     <span>Total Items</span>
                   </p>
-                  <p className="font-semibold text-lg">3 Item</p>
+                  <p className="font-semibold text-lg">{cart.length} Item{cart.length !== 1 ? 's' : ''}</p>
                 </div>
                 <div className="flex w-full items-center justify-between">
                   <p className="flex items-center gap-1 font-medium text-monday-gray">
@@ -191,7 +191,7 @@ const StepThree = ({ handlePrevStep }: { handlePrevStep: () => void }) => {
                       className="size-6 flex shrink-0"
                       alt="icon"
                     />
-                    <span>PPN 10%</span>
+                    <span>PPN 12%</span>
                   </p>
                   <p className="font-semibold text-lg">
                     Rp {tax.toLocaleString("id")}
@@ -213,16 +213,16 @@ const StepThree = ({ handlePrevStep }: { handlePrevStep: () => void }) => {
                 </div>
               </div>
             </div>
-            <div className="flex items-center justify-end gap-4">
+            <div className="flex items-center justify-end gap-4 flex-row">
               <button
                 onClick={handlePrevStep}
-                className="btn btn-red font-semibold"
+                className="btn btn-red font-semibold w-full sm:w-auto"
               >
                 Cancel
               </button>
               <button
                 onClick={onSubmit}
-                className="btn btn-primary font-semibold w-full"
+                className="btn btn-primary font-semibold w-full sm:w-auto"
               >
                 {isPending ? "Saving..." : "Save Transaction"}
               </button>

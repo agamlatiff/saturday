@@ -33,16 +33,15 @@ const AddTransaction = () => {
 
   const ProgressBar = ({ step }: { step: number }) => {
     return (
-      <div className="flex justify-between relative w-full h-[127px] rounded-3xl p-[18px] bg-white">
+      <div className="flex justify-between relative w-full h-auto sm:h-[127px] rounded-3xl p-[18px] bg-white">
         {steps.map((item, index) => {
           const isDone = step > index + 1;
           const isActive = step === index + 1;
-          // const isFuture = step < index + 1;
 
           return (
             <div
               key={index}
-              className="relative flex flex-col gap-3 items-center text-center w-full"
+              className="relative flex flex-col gap-2 sm:gap-3 items-center text-center w-full"
             >
               <img
                 src={
@@ -52,18 +51,22 @@ const AddTransaction = () => {
                     ? item.iconActive
                     : item.iconInactive
                 }
-                className="size-8"
+                className="size-6 sm:size-8"
                 alt="icon"
               />
 
               <div className="flex flex-col gap-1">
-                <p className="font-medium text-monday-gray">Step {index + 1}</p>
-                <p className="font-semibold text-lg">{item.label}</p>
+                <p className="font-medium text-xs sm:text-sm text-monday-gray">
+                  Step {index + 1}
+                </p>
+                <p className="font-semibold text-sm sm:text-lg hidden sm:block">
+                  {item.label}
+                </p>
               </div>
 
-              {/* Render line to next step */}
-              {index < steps.length && (
-                <div className="absolute top-[34px] right-[-50%] h-[3px] w-full">
+              {/* Render line to next step - only show if not the last step */}
+              {index < steps.length - 1 && (
+                <div className="absolute top-[28px] sm:top-[34px] left-[50%] h-[3px] w-full sm:max-w-[calc(100%-32px)] sm:max-w-none max-w-full">
                   <img
                     src={
                       isDone
@@ -86,16 +89,21 @@ const AddTransaction = () => {
 
   return (
     <>
-      <div id="main-container" className="flex flex-1">
+      <div id="main-container" className="lg:flex flex-1">
         <Sidebar />
-        <div id="Content" className="flex flex-col flex-1 p-6 pt-0">
+        <div
+          id="Content"
+          className="flex flex-col flex-1 p-6 pt-0 overflow-hidden"
+        >
           <div
             id="Top-Bar"
-            className="flex items-center w-full gap-6 mt-[30px] mb-6"
+            className="flex items-center w-full gap-6 mt-[30px] mb-6 lg:flex-row"
           >
             <div className="flex items-center gap-6 h-[92px] bg-white w-full rounded-3xl p-[18px]">
               <div className="flex flex-col gap-[6px] w-full">
-                <h1 className="font-bold text-2xl">Add New Transaction</h1>
+                <h1 className="font-bold text-xl sm:text-2xl">
+                  Add New Transaction
+                </h1>
                 <Link
                   to={"/transactions"}
                   className="flex items-center gap-[6px] text-monday-gray font-semibold"

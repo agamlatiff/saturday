@@ -49,7 +49,9 @@ const MyMerchantProfile = () => {
           >
             <div className="flex items-center gap-6 h-[92px] bg-white w-full rounded-3xl p-[18px]">
               <div className="flex flex-col gap-[6px] w-full">
-                <h1 className="font-bold text-2xl">Manage Merchants</h1>
+                <h1 className="font-bold text-xl sm:text-2xl">
+                  Manage Merchants
+                </h1>
               </div>
               <div className="flex items-center flex-nowrap gap-3">
                 <SearchButton />
@@ -60,7 +62,7 @@ const MyMerchantProfile = () => {
           <main className="flex flex-col gap-6 flex-1">
             <section
               id="Warehouse-Info"
-              className="flex items-center justify-between rounded-3xl p-[18px] gap-3 bg-white"
+              className="flex items-center justify-between rounded-3xl p-[18px] gap-3 bg-white flex-row"
             >
               <div className="flex size-16 rounded-2xl bg-monday-background items-center justify-center overflow-hidden">
                 <img
@@ -130,8 +132,8 @@ const MyMerchantProfile = () => {
                   <div className="flex flex-col gap-5">
                     {merchant.products.map((product) => (
                       <React.Fragment key={product.id}>
-                        <div className="card flex items-center justify-between gap-6">
-                          <div className="flex items-center gap-3 w-[340px] shrink-0">
+                        <div className="card flex items-center justify-between gap-6 flex-col sm:flex-row">
+                          <div className="flex items-center gap-3 w-full sm:w-[220px] md:w-[260px]">
                             <div className="flex size-[86px] rounded-2xl bg-monday-background items-center justify-center overflow-hidden">
                               <img
                                 src={product.thumbnail}
@@ -140,7 +142,7 @@ const MyMerchantProfile = () => {
                               />
                             </div>
                             <div className="flex flex-col gap-2 flex-1">
-                              <p className="font-semibold text-xl w-[242px] truncate">
+                              <p className="font-semibold text-xl w-[162px] truncate">
                                 {product.name}
                               </p>
                               <p className="font-semibold text-xl text-monday-blue">
@@ -148,9 +150,9 @@ const MyMerchantProfile = () => {
                               </p>
                             </div>
                           </div>
-                          <div className="flex items-center gap-[6px] w-[187px] shrink-0">
+                          <div className="flex items-center gap-[6px] md:w-[154px]">
                             <img
-                              src="assets/images/icons/box-black.svg"
+                              src="/assets/images/icons/box-black.svg"
                               className="size-6 flex shrink-0"
                               alt="icon"
                             />
@@ -158,9 +160,9 @@ const MyMerchantProfile = () => {
                               {product.pivot?.stock} Stock
                             </p>
                           </div>
-                          <div className="flex items-center gap-[6px] w-[187px] shrink-0">
+                          <div className="md:flex items-center gap-[6px] hidden md:w-[154px]">
                             <img
-                              src="assets/images/icons/Makeup-black.svg"
+                              src={product.category.photo}
                               className="size-6 flex shrink-0"
                               alt="icon"
                             />
@@ -168,12 +170,12 @@ const MyMerchantProfile = () => {
                               {product.category.name}
                             </p>
                           </div>
-                          <div className="flex items-center gap-4">
+                          <div className="flex items-center gap-4 w-full sm:w-auto">
                             <button
                               onClick={() => {
                                 setSelectedProductId(product.id);
                               }}
-                              className="btn btn-primary-opacity min-w-[130px] font-semibold"
+                              className="btn btn-primary-opacity min-w-[130px] font-semibold w-full sm:w-auto"
                             >
                               Details
                             </button>
@@ -186,7 +188,7 @@ const MyMerchantProfile = () => {
                 ) : (
                   <div
                     id="Empty-State"
-                    className="hidden flex flex-col flex-1 items-center justify-center rounded-[20px] border-dashed border-2 border-monday-gray gap-6"
+                    className="py-20 flex flex-col flex-1 items-center justify-center rounded-[20px] border-dashed border-2 border-monday-gray gap-6"
                   >
                     <img
                       src="assets/images/icons/document-text-grey.svg"
@@ -209,7 +211,7 @@ const MyMerchantProfile = () => {
             onClick={() => setSelectedProductId(null)}
             className="absolute w-full h-full bg-[#292D32B2] cursor-pointer"
           />
-          <div className="relative flex flex-col w-[406px] shrink-0 rounded-3xl p-[18px] gap-5 bg-white">
+          <div className="relative flex flex-col w-full max-w-[406px] shrink-0 rounded-3xl p-[18px] gap-5 bg-white mx-4">
             <div className="modal-header flex items-center justify-between">
               <p className="font-semibold text-xl">Product Details</p>
               <button

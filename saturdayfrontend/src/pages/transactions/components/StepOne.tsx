@@ -29,7 +29,7 @@ const StepOne = ({ handleNextStep }: { handleNextStep: () => void }) => {
   };
 
   return (
-    <div className="flex gap-6">
+    <div className="flex flex-col lg:flex-row gap-6">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col w-full rounded-3xl p-[18px] gap-5 bg-white"
@@ -75,19 +75,19 @@ const StepOne = ({ handleNextStep }: { handleNextStep: () => void }) => {
         </label>
         {errors.phone && <p className="text-red-500">{errors.phone.message}</p>}
 
-        <div className="flex items-center justify-end gap-4">
-          <Link to={"/transactions"} className="btn btn-red font-semibold">
+        <div className="flex items-center justify-end gap-4 flex-row">
+          <Link to={"/transactions"} className="btn btn-red font-semibold w-full sm:w-auto">
             Cancel
           </Link>
-          <button type="submit" className="btn btn-primary font-semibold">
+          <button type="submit" className="btn btn-primary font-semibold w-full sm:w-auto">
             Continue
           </button>
         </div>
       </form>
-      <div className="flex w-full h-fit rounded-3xl p-[18px] gap-3 bg-white">
+      <div className="flex w-full h-fit rounded-3xl p-[18px] gap-3 bg-white flex-col sm:flex-row">
         <div className="flex size-16 rounded-2xl bg-monday-background items-center justify-center overflow-hidden">
           <img
-            src={merchant?.photo}
+            src={merchant?.photo ?? "assets/images/icons/user-thin-grey.svg"}
             className="size-full object-contain"
             alt="icon"
           />
