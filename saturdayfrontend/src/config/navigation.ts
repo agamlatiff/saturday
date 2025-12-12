@@ -85,13 +85,6 @@ export const navigationSections: NavigationSection[] = [
     section: "Account Settings",
     items: [
       {
-        label: "Roles",
-        path: "/roles",
-        iconBlack: "/assets/images/icons/stickynote-black.svg",
-        iconBlue: "/assets/images/icons/stickynote-blue-fill.svg",
-        roles: ["manager"],
-      },
-      {
         label: "Manage Users",
         iconBlack: "/assets/images/icons/user-square-black.svg",
         iconBlue: "/assets/images/icons/user-square-black.svg",

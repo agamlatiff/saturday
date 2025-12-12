@@ -36,11 +36,6 @@ import UserList from "./pages/users/UserList";
 import AddUser from "./pages/users/AddUser";
 import EditUser from "./pages/users/EditUser";
 
-// Import Role Pages
-import RoleList from "./pages/roles/RoleList";
-import AddRole from "./pages/roles/AddRole";
-import EditRole from "./pages/roles/EditRole";
-
 // Import Merchant Pages
 import MerchantList from "./pages/merchants/MerchantList";
 import AddMerchant from "./pages/merchants/AddMerchant";
@@ -227,31 +222,6 @@ function App() {
                 }
               />
 
-              {/* Role Management Routes */}
-              <Route
-                path="/roles"
-                element={
-                  <ProtectedRoute roles={["manager"]}>
-                    <RoleList />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/roles/add"
-                element={
-                  <ProtectedRoute roles={["manager"]}>
-                    <AddRole />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/roles/edit/:id"
-                element={
-                  <ProtectedRoute roles={["manager"]}>
-                    <EditRole />
-                  </ProtectedRoute>
-                }
-              />
 
               <Route
                 path="/users/assign-roles"
