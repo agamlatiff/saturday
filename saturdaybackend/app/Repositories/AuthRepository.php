@@ -29,6 +29,7 @@ class AuthRepository
     request()->session()->regenerate();
 
     // Get user
+    /** @var User $user */
     $user = Auth::user();
 
     // Return response
@@ -64,6 +65,7 @@ class AuthRepository
     }
 
     // Get user
+    /** @var User $user */
     $user = Auth::user();
     $token = $user->createToken("API Token")->plainTextToken;
 
