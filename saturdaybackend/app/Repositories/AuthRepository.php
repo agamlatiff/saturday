@@ -12,7 +12,7 @@ class AuthRepository
   public function login(array $data)
   {
 
-    // Get credenttials
+    // Get credentials
     $credentials = [
       "email" => $data["email"],
       "password" => $data["password"]
@@ -71,7 +71,7 @@ class AuthRepository
 
     // Return response
     return response()->json([
-      "mssage" => "Login successful",
+      "message" => "Login successful",
       "token" => $token,
       "user" => new UserResource($user->load("roles"))
     ]);
