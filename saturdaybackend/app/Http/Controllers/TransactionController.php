@@ -9,6 +9,7 @@ use App\Services\TransactionService;
 use Dotenv\Exception\ValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller
 {
@@ -36,7 +37,7 @@ class TransactionController extends Controller
     }
 
     public function show(int $id)
-    
+
     {
         try {
             $fields = ["*"];
@@ -52,9 +53,9 @@ class TransactionController extends Controller
 
     public function getTransactionsByMerchant()
     {
-        $user = auth()->user();
-        
-        if(!$user) {
+        $user = Auth::user();
+
+        if (!$user) {
             return response()->json(["message" => "No auth available"], 500);
         }
 
@@ -64,7 +65,7 @@ class TransactionController extends Controller
 
         $merchantId = $user->merchant->id;
         $transactions = $this->transactionService->getTransactionsByMerchant($merchantId);
-        
+
         return response()->json($transactions);
     }
 }

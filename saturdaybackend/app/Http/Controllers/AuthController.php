@@ -70,7 +70,7 @@ class AuthController extends Controller
         $dataToUpdate = [];
         
         if (isset($validated['name']) && !empty($validated['name'])) {
-            $dataToUpdate['name'] = $validated['name'];
+           $dataToUpdate['name'] = $validated['name'];
         }
         
         if (isset($validated['email']) && !empty($validated['email'])) {

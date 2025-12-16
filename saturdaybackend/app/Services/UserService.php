@@ -66,14 +66,20 @@ class UserService
 
   private function uploadPhoto(UploadedFile $photo)
   {
+    
+    // Store photo in public disk
     return $photo->store("users", "public");
   }
 
   private function deletePhoto(string $photoPath)
   {
+    
+    // Get relative path from public disk
     $relateivePath = "users/" . basename($photoPath);
 
+    // Check if file exists
     if (Storage::disk("public")->exists($relateivePath)) {
+      // Delete file
       Storage::disk("public")->delete($relateivePath);
     }
 
