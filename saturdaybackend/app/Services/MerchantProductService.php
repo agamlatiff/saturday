@@ -120,7 +120,7 @@ class MerchantProductService
         }
 
         // Update stock 
-        $this->warehouseProductRepository->updateStock($warehouseId, $productId, $warehouseProduct->stock - $diff);
+        $this->warehouseProductRepository->updateStock($warehouseId, $productId, $warehouseProduct->stock + $diff);
       }
 
 
