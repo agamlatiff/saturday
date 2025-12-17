@@ -14,6 +14,20 @@ class MerchantResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'address' => $this->address,
+            'photo' => $this->photo,
+            'phone' => $this->phone,
+            'keeper_id' => $this->keeper_id,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+
+            // Relationships
+            'keeper' => new UserResource($this->whenLoaded('keeper')),
+            'products' => ProductResource::collection($this->whenLoaded('products')),
+            'transactions' => TransactionResource::collection($this->whenLoaded('transactions')),
+        ];
     }
 }
